@@ -7,41 +7,58 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BEARFLIX.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
-<body>
+<body class="bg-@ViewData["Title"]">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="z-3 navbar bg-dark navbar-expand-md" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BEARFLIX</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <a asp-area="" asp-controller="Inicio" asp-action="Index">
+                    <img src="~/images/LogoBearflix.png" alt="Logo" id="Logo" class="navbar-brand img-fluid me-4">
+                </a>
+                
+
+                <button class="navbar-toggler text-white-50" type="button" data-bs-toggle="collapse" data-bs-target="#barNavegacion"
+                        aria-controls="barNavegacion" aria-expanded="false" aria-label="Navegación">
+                    <span class="bi bi-three-dots text-white-50"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <div class="collapse navbar-collapse mx-2" id="barNavegacion">
+
+                    <ul class="navbar-nav me-auto mb-1 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link active text-white" asp-area="" asp-controller="Inicio" asp-action="About">SOBRE NOSOTROS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link active text-white" asp-area="" asp-controller="Inicio" asp-action="Politicas">POLÍTICAS</a>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav ms-auto mb-2 mb-md-0 d-md-inline">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" asp-area="" asp-controller="Inicio" asp-action="Dudas">DUDAS FRECUENTES</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+   
+    <div>
+        <main role="main" class=" vh-100">
             @RenderBody()
         </main>
     </div>
+        
+    
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - BEARFLIX - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    
+    <footer class="z-1 bg-dark mt-3 text-white pb-2 container-fluid">
+              <div class="container text-center">
+                  <p>&copy; 2024 Bearflix. La mejor opción. Todos los derechos reservados.</p>
+              </div>
+          </footer>
+     
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
