@@ -1,7 +1,7 @@
 
 # SOLUCION_WEB
 
-<!-- 
+
 Abrir el proyecto desde el archivo: "SOLUCION_WEB.sln". 
 
 Al iniciar el proyecto, ir al archivo: "appsettings.json".
@@ -17,6 +17,5 @@ Por último ir a: Herramientas -> Administrador de Paquetes NuGet -> Consola del
 una vez abierta la consola de NuGet, coloar el siguiente comando: Update-Database
 
 Ahora se tendría que haber creado la base de datos BEARFLIX.
--->
 
 
