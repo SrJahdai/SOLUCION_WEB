@@ -18,6 +18,11 @@ namespace BEARFLIX.Controllers
             return View();
         }
 
+        public IActionResult Pruebas()
+        {
+            return View();
+        }
+
         public IActionResult Dudas()
         {
             return View();

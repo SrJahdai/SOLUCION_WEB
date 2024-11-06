@@ -2,6 +2,12 @@
     max-width: 60px;
     height: auto;
 }
+
+.Logo2 {
+    width: 100px;
+    height: auto;
+}
+
 @media (min-width: 768px) {
     .bg-Inicio {
         background-image: url('/images/FondoBearflix.png');
@@ -23,9 +29,17 @@
     }
 }
 
+.bg-Log {
+    background-image: url('/images/FondoBearflix_OSCURO.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
 .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    
 }
 
 footer{
@@ -39,9 +53,7 @@ footer{
     color: #FF9000;
 }
 
-.card:hover {
-        transform: translateY(-10px);
-    }
+
 
 .accordion-button:not(.collapsed) {
     background-color: #343a40 !important; 
@@ -51,6 +63,22 @@ footer{
 .accordion-button.collapsed {
     background-color: #FF9000 !important;
 }
+.focus-ring-warning:focus {
+    border-color: rgba(var(--bs-warning-rgb), .25) !important;
+}
 
+.btn-orange {
+    background-color: #FF9201 !important;
+    color: white !important;
+}
+
+    .btn-orange:hover {
+        background-color: #ff9f22 !important;
+    }
+
+
+.opacidad-blanco {
+    background: rgba(255, 255, 255, 0.7) !important;
+}
 
 
