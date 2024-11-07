@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "_logLayout";
+}
+
+<div class="container-fluid vh-100">
+    <div class="row pb-1 mt-1">
+        <div class="col-12 h-100 mb-3 d-flex justify-content-center">
+            <div class="col-12 col-md-3"></div>
+            <div class="col-12 col-md-6 pb-5 px-4 d-flex justify-content-center">
+                <div class="card w-75 rounded-4 opacidad-blanco">
+                    <div class="card-body py-3 container-fluid">
+                        <h3 class="card-title fw-bold mt-3 mb-4">REGÍSTRATE</h3>
+                        <form id="formRegistro" action="/api/autenticacion/registro" class="container-fluid px-0 py-1 opacidad-blanco" method="post">
+                            <div id="error-message" class="text-danger" role="alert"></div>
+
+                            <div class="input-group mb-1 ">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person fs-3"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control focus-ring focus-ring-warning" id="Nombre" placeholder="Nombre de usuario">
+                                    <label for="Nombre">Nombre de usuario</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group mb-1">
+                                <span class="input-group-text">
+                                    <i class="bi bi-envelope-at fs-3"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="email" class="form-control focus-ring focus-ring-warning" id="Correo" required placeholder="Correo Electrónico">
+                                    <label for="Correo">Correo Electrónico</label>
+                                </div>
+                                
+                            </div>
+
+                            <div class="input-group mb-1">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock fs-3"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="password" class="form-control focus-ring focus-ring-warning" id="Contrasena" required placeholder="Contraseña">
+                                    <label for="Contrasena">Contraseña</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group mb-1">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person-lock fs-3"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="password" class="form-control focus-ring focus-ring-warning" id="confirmarContrasena" required placeholder="Confirmar Contraseña">
+                                    <label for="confirmarContrasena">Confirmar Contraseña</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-cake2 fs-3"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="date" class="form-control focus-ring focus-ring-warning" id="FechaNacimiento" required placeholder="Fecha de Nacimiento">
+                                    <label for="FechaNacimiento">Fecha de Nacimiento</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="py-2 card-footer">
+                        <section class="row my-2">
+                            <div class="my-1 col-6 px-3 d-flex justify-content-evenly">
+                                <a type="button" href="/Inicio/Index" class="btn btn-outline-dark px-lg-5 px-2">
+                                    Regresar
+                                </a>
+                            </div>
+                            <div class="my-1 col-6 px-3 d-flex justify-content-evenly">
+                                <button type="submit" id="registro-submit" class="btn btn-orange px-lg-5 px-2">
+                                    Registrarse
+                                </button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 h-0"></div>
+        </div>
+    </div>
+</div>

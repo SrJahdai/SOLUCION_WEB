@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BEARFLIX</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BEARFLIX.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/iconos/bootstrap-icons.min.css">
+</head>
+<body class="bg-@ViewData["Title"]">
+    <header>
+        <nav class="z-3 navbar bg-dark navbar-expand-md" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a asp-area="" asp-controller="Inicio" asp-action="Index">
+                    <img src="~/images/LogoBearflix.png" alt="Logo" id="Logo" class="navbar-brand img-fluid me-4">
+                </a>
+                
+
+                <button class="navbar-toggler text-white-50" type="button" data-bs-toggle="collapse" data-bs-target="#barNavegacion"
+                        aria-controls="barNavegacion" aria-expanded="false" aria-label="Navegación">
+                    <span class="navbar-toggler-icon text-white-50"></span>
+                </button>
+
+                <div class="collapse navbar-collapse mx-2" id="barNavegacion">
+
+                    <ul class="navbar-nav me-auto mb-1 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" asp-area="" asp-controller="Inicio" asp-action="About">SOBRE NOSOTROS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" asp-area="" asp-controller="Inicio" asp-action="Politicas">POLÍTICAS</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-md-0 d-md-inline">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" asp-area="" asp-controller="Inicio" asp-action="Dudas">DUDAS FRECUENTES</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+   
+    <div class="">
+        <main role="main" class="container-fluid min-vh-100">
+            @RenderBody()
+        </main>
+    </div>
+        
+    
+
+    
+    <footer class="z-1 bg-dark mt-3 text-white pb-2 container-fluid">
+              <div class="container text-center">
+                  <p>&copy; 2024 Bearflix. La mejor opción. Todos los derechos reservados.</p>
+              </div>
+          </footer>
+     
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

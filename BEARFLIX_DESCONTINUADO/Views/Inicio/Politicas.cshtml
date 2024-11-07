@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Políticas";
+}
+
+<section class="bg-orange fw-bold text-white text-center py-5">
+    <div class="container fw-bold">
+        <h1 class="display-4 fw-bold">Políticas Generales y Específicas</h1>
+        <p class="lead fw-semibold">al registrarse, quedarán aceptadas las clausulas que se especifican a continuación</p>
+    </div>
+</section>
+<div class="container my-5 bg-white">
+    <section>
+        <h2 class="mb-4">Políticas Generales</h2>
+        <div class="accordion" id="generalPolicies">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="privacyHeading">
+                    <button class="accordion-button fw-bold text-white" type="button" data-bs-toggle="collapse" data-bs-target="#privacyCollapse" aria-expanded="true" aria-controls="privacyCollapse">
+                        Privacidad
+                    </button>
+                </h2>
+                <div id="privacyCollapse" class="accordion-collapse collapse show" aria-labelledby="privacyHeading" data-bs-parent="#generalPolicies">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>Protección rigurosa de los datos personales de los clientes.</li>
+                            <li>Uso transparente de la información para mejorar la experiencia del usuario y personalizar recomendaciones.</li>
+                            <li>Opción de baja voluntaria y eliminación de datos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="my-5">
+        <h2 class="mb-4">Políticas Específicas para Alquiler</h2>
+        <div class="accordion" id="rentalPolicies">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="rentalPeriodHeading">
+                    <button class="accordion-button fw-bold text-white" type="button" data-bs-toggle="collapse" data-bs-target="#rentalPeriodCollapse" aria-expanded="true" aria-controls="rentalPeriodCollapse">
+                        Períodos de alquiler
+                    </button>
+                </h2>
+                <div id="rentalPeriodCollapse" class="accordion-collapse collapse show" aria-labelledby="rentalPeriodHeading" data-bs-parent="#rentalPolicies">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>Duración estándar del alquiler.</li>
+                            <li>Opciones de renovación del alquiler.</li>
+                            <li>Penalizaciones por retrasos en la devolución.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="my-5">
+        <h2 class="mb-4">Políticas Específicas para Venta</h2>
+        <div class="accordion" id="salePolicies">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="productWarrantyHeading">
+                    <button class="accordion-button fw-bold text-white" type="button" data-bs-toggle="collapse" data-bs-target="#productWarrantyCollapse" aria-expanded="true" aria-controls="productWarrantyCollapse">
+                        Garantía de producto
+                    </button>
+                </h2>
+                <div id="productWarrantyCollapse" class="accordion-collapse collapse show" aria-labelledby="productWarrantyHeading" data-bs-parent="#salePolicies">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>Garantía de funcionamiento del producto físico (si aplica).</li>
+                            <li>Procedimiento para gestionar productos defectuosos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+
+

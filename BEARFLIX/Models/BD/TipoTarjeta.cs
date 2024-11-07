@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BEARFLIX.Models.BD;
 
-[Index("Descripcion", Name = "UQ__TipoTarj__298336B67DC1FCCB", IsUnique = true)]
+[Index("Descripcion", Name = "UQ__TipoTarj__298336B699D1185C", IsUnique = true)]
 public partial class TipoTarjeta
 {
     [Key]

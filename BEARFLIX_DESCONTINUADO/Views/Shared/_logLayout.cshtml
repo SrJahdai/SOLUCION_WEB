@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BEARFLIX</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BEARFLIX.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/iconos/bootstrap-icons.min.css">
+</head>
+<body class="bg-Log">
+    <header class="fixed-top z-1">
+        <div class="px-3 col-12  ">
+            <img src="~/images/LogoBearflix.png" class="Logo2" alt="" srcset="">
+        </div>
+    </header>
+
+
+    <div class="z-3">
+        <main role="main" class="container-fluid min-vh-100">
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+
+    <footer class="z-3 bg-dark mt-3 text-white pb-2 container-fluid">
+        <div class="container text-center">
+            <p>&copy; 2024 Bearflix. La mejor opción. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

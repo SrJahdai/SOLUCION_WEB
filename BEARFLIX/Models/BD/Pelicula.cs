@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BEARFLIX.Models.BD;
 
-[Index("Titulo", Name = "UQ__Pelicula__38FA640FCFB2E8C2", IsUnique = true)]
+[Index("Titulo", Name = "UQ__Pelicula__38FA640F354E3FB3", IsUnique = true)]
 [Index("Titulo", Name = "idx_pelicula_titulo")]
 public partial class Pelicula
 {

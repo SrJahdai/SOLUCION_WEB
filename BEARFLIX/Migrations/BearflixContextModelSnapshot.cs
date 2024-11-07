@@ -39,9 +39,9 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("descripcion");
 
                     b.HasKey("Id")
-                        .HasName("PK__Banco__3213E83F0CDF7A3E");
+                        .HasName("PK__Banco__3213E83F7C0FECA7");
 
-                    b.HasIndex(new[] { "Descripcion" }, "UQ__Banco__298336B6A846EEF5")
+                    b.HasIndex(new[] { "Descripcion" }, "UQ__Banco__298336B6E10BFCCA")
                         .IsUnique();
 
                     b.ToTable("Banco");
@@ -64,9 +64,9 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("descripcion");
 
                     b.HasKey("Id")
-                        .HasName("PK__Genero__3213E83FE0FDFB64");
+                        .HasName("PK__Genero__3213E83F26A199F5");
 
-                    b.HasIndex(new[] { "Descripcion" }, "UQ__Genero__298336B6535391E6")
+                    b.HasIndex(new[] { "Descripcion" }, "UQ__Genero__298336B65EE00DD8")
                         .IsUnique();
 
                     b.ToTable("Genero");
@@ -140,11 +140,11 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("video");
 
                     b.HasKey("Id")
-                        .HasName("PK__Pelicula__3213E83F8744204E");
+                        .HasName("PK__Pelicula__3213E83FCF987713");
 
                     b.HasIndex("IdProveedor");
 
-                    b.HasIndex(new[] { "Titulo" }, "UQ__Pelicula__38FA640FCFB2E8C2")
+                    b.HasIndex(new[] { "Titulo" }, "UQ__Pelicula__38FA640F354E3FB3")
                         .IsUnique();
 
                     b.HasIndex(new[] { "Titulo" }, "idx_pelicula_titulo");
@@ -169,9 +169,9 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("descripcion");
 
                     b.HasKey("Id")
-                        .HasName("PK__Permiso__3213E83F368A8851");
+                        .HasName("PK__Permiso__3213E83FB880663B");
 
-                    b.HasIndex(new[] { "Descripcion" }, "UQ__Permiso__298336B64EE0242F")
+                    b.HasIndex(new[] { "Descripcion" }, "UQ__Permiso__298336B6A185AE59")
                         .IsUnique();
 
                     b.ToTable("Permiso");
@@ -198,9 +198,9 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("porcentaje");
 
                     b.HasKey("Id")
-                        .HasName("PK__Proveedo__3213E83F8ECC1BBF");
+                        .HasName("PK__Proveedo__3213E83F0FB68EF1");
 
-                    b.HasIndex(new[] { "Descripcion" }, "UQ__Proveedo__298336B608C3003C")
+                    b.HasIndex(new[] { "Descripcion" }, "UQ__Proveedo__298336B65FA8A577")
                         .IsUnique();
 
                     b.HasIndex(new[] { "Descripcion" }, "idx_proveedor_descripcion");
@@ -223,7 +223,7 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("puntaje");
 
                     b.HasKey("IdUsuario", "IdPelicula")
-                        .HasName("PK__Puntaje__856E135946915967");
+                        .HasName("PK__Puntaje__856E13596C099847");
 
                     b.HasIndex("IdPelicula");
 
@@ -270,7 +270,7 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("rango_inicio");
 
                     b.HasKey("Id")
-                        .HasName("PK__Reporte__3213E83F5DC71BCC");
+                        .HasName("PK__Reporte__3213E83F248E0B52");
 
                     b.ToTable("Reporte");
                 });
@@ -305,11 +305,11 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("total_ganancias");
 
                     b.HasKey("Id")
-                        .HasName("PK__ReporteP__3213E83F9CF1B662");
+                        .HasName("PK__ReporteP__3213E83F4836C512");
 
                     b.HasIndex("IdTipo");
 
-                    b.HasIndex(new[] { "IdReporte", "IdProveedor", "IdTipo" }, "UQ__ReporteP__97F8BA38AAB4AB51")
+                    b.HasIndex(new[] { "IdReporte", "IdProveedor", "IdTipo" }, "UQ__ReporteP__97F8BA38BBAF9EFF")
                         .IsUnique();
 
                     b.HasIndex(new[] { "IdProveedor", "IdTipo" }, "idx_reporte_proveedor_tipo");
@@ -334,9 +334,9 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("descripcion");
 
                     b.HasKey("Id")
-                        .HasName("PK__Rol__3213E83F867DD8B6");
+                        .HasName("PK__Rol__3213E83F183411EF");
 
-                    b.HasIndex(new[] { "Descripcion" }, "UQ__Rol__298336B6F6AF6237")
+                    b.HasIndex(new[] { "Descripcion" }, "UQ__Rol__298336B66BED63A3")
                         .IsUnique();
 
                     b.ToTable("Rol");
@@ -389,7 +389,7 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("vencimiento");
 
                     b.HasKey("Id")
-                        .HasName("PK__Tarjeta__3213E83F307CD1CA");
+                        .HasName("PK__Tarjeta__3213E83F63C13132");
 
                     b.HasIndex("IdBanco");
 
@@ -417,9 +417,9 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("descripcion");
 
                     b.HasKey("Id")
-                        .HasName("PK__TipoTarj__3213E83F3CCAC959");
+                        .HasName("PK__TipoTarj__3213E83F4C95282E");
 
-                    b.HasIndex(new[] { "Descripcion" }, "UQ__TipoTarj__298336B67DC1FCCB")
+                    b.HasIndex(new[] { "Descripcion" }, "UQ__TipoTarj__298336B699D1185C")
                         .IsUnique();
 
                     b.ToTable("TipoTarjeta");
@@ -442,9 +442,9 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("descripcion");
 
                     b.HasKey("Id")
-                        .HasName("PK__TipoVent__3213E83F0D45F75B");
+                        .HasName("PK__TipoVent__3213E83F956DBBC8");
 
-                    b.HasIndex(new[] { "Descripcion" }, "UQ__TipoVent__298336B652AE8540")
+                    b.HasIndex(new[] { "Descripcion" }, "UQ__TipoVent__298336B6C25CFFEF")
                         .IsUnique();
 
                     b.ToTable("TipoVenta");
@@ -454,23 +454,24 @@ namespace BEARFLIX.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                    b.Property<string>("Contrasena")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("contrasena");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+                    b.Property<string>("Correo")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("correo");
 
                     b.Property<DateTime?>("FechaBaja")
                         .HasColumnType("datetime")
@@ -492,54 +493,23 @@ namespace BEARFLIX.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("foto");
 
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(150)")
+                        .HasColumnName("nombre");
 
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
+                    b.HasKey("Id")
+                        .HasName("PK__Usuario__3213E83FAE4A02B6");
 
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                    b.HasIndex(new[] { "Correo" }, "UQ__Usuario__2A586E0B49595112")
+                        .IsUnique();
 
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                    b.HasIndex(new[] { "Correo" }, "idx_usuario_correo")
+                        .IsUnique();
 
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex(new[] { "Email" }, "UQ__Usuario__2A586E0B4FD6CE3F")
-                        .IsUnique()
-                        .HasFilter("[Email] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("BEARFLIX.Models.BD.Venta", b =>
@@ -578,7 +548,7 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("monto");
 
                     b.HasKey("Id")
-                        .HasName("PK__Venta__3213E83F20DB1106");
+                        .HasName("PK__Venta__3213E83F96690ED1");
 
                     b.HasIndex(new[] { "FechaVenta" }, "idx_venta_fecha");
 
@@ -604,139 +574,6 @@ namespace BEARFLIX.Migrations
                     b.ToTable("GeneroPelicula");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens", (string)null);
-                });
-
             modelBuilder.Entity("PeliculaGenero", b =>
                 {
                     b.Property<int>("IdPelicula")
@@ -748,7 +585,7 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("id_genero");
 
                     b.HasKey("IdPelicula", "IdGenero")
-                        .HasName("PK__Pelicula__3C9BF10288C9D129");
+                        .HasName("PK__Pelicula__3C9BF1022A90ABE1");
 
                     b.HasIndex(new[] { "IdGenero" }, "idx_pelicula_genero");
 
@@ -766,7 +603,7 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("id_permiso");
 
                     b.HasKey("IdRol", "IdPermiso")
-                        .HasName("PK__PermisoR__889447C48067D7CB");
+                        .HasName("PK__PermisoR__889447C49121E2CE");
 
                     b.HasIndex("IdPermiso");
 
@@ -797,7 +634,7 @@ namespace BEARFLIX.Migrations
                         .HasColumnName("id_rol");
 
                     b.HasKey("IdUsuario", "IdRol")
-                        .HasName("PK__UsuarioR__5895CFF38AC7C735");
+                        .HasName("PK__UsuarioR__5895CFF3C224BD73");
 
                     b.HasIndex("IdRol");
 
@@ -918,57 +755,6 @@ namespace BEARFLIX.Migrations
                     b.Navigation("IdTipoNavigation");
 
                     b.Navigation("IdUsuarioNavigation");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
-                {
-                    b.HasOne("BEARFLIX.Models.BD.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
-                {
-                    b.HasOne("BEARFLIX.Models.BD.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BEARFLIX.Models.BD.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
-                {
-                    b.HasOne("BEARFLIX.Models.BD.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("PeliculaGenero", b =>

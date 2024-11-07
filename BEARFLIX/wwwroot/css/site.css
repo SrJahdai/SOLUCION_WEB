@@ -39,16 +39,16 @@
 
 .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
 }
 
-footer{
+footer {
     margin-top: 5px;
 }
 
 .bg-orange {
     background-color: #FF9000;
 }
+
 .text-orange {
     color: #FF9000;
 }
@@ -56,13 +56,14 @@ footer{
 
 
 .accordion-button:not(.collapsed) {
-    background-color: #343a40 !important; 
+    background-color: #343a40 !important;
     color: #fff;
 }
 
 .accordion-button.collapsed {
     background-color: #FF9000 !important;
 }
+
 .focus-ring-warning:focus {
     border-color: rgba(var(--bs-warning-rgb), .25) !important;
 }
@@ -80,5 +81,3 @@ footer{
 .opacidad-blanco {
     background: rgba(255, 255, 255, 0.7) !important;
 }
-
-

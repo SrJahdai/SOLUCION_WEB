@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BEARFLIX.Models.BD;
 
-[Index("IdReporte", "IdProveedor", "IdTipo", Name = "UQ__ReporteP__97F8BA38AAB4AB51", IsUnique = true)]
+[Index("IdReporte", "IdProveedor", "IdTipo", Name = "UQ__ReporteP__97F8BA38BBAF9EFF", IsUnique = true)]
 [Index("IdProveedor", "IdTipo", Name = "idx_reporte_proveedor_tipo")]
 public partial class ReporteProveedor
 {
