@@ -2,6 +2,10 @@
 using BEARFLIX.Models.DTO;
 using BEARFLIX.Servicios;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -88,18 +92,35 @@ public class AutenticacionController : ControllerBase
     }
 
     // POST: api/autenticacion/login
-    // POST: /autenticacion/login
+
     [HttpPost("login")]
-    public async Task<ActionResult<Usuario>> Login([FromBody] LoginRequerimiento request)
+    public async Task<ActionResult> Login([FromBody] LoginRequerimiento request)
     {
         try
         {
+            //Autenticacin del usuario
             var usuario = await _autenticacion.AutenticarUsuario(request.Correo, request.Contrasena);
-            return Ok(usuario);
+            if (usuario == null)
+            {
+                return Unauthorized(new { message = "Credenciales Inválidas" });
+            }
+
+            
+            var token = _autenticacion.GenerarToken(usuario);
+
+            //Retorno de datos de usuario
+            return Ok(new
+            {
+                token,
+                userId = usuario.Id 
+            });
         }
         catch (Exception ex)
         {
             return Unauthorized(new { message = ex.Message });
         }
     }
+
+    
+
 }

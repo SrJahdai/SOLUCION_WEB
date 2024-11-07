@@ -1,85 +1,71 @@
 ﻿
 @{
     ViewData["Title"] = "Login";
-    Layout = "/Views/Shared/_logLayout";
+    Layout = "_logLayout";
 }
-<!--
-    <div class="container-fluid vh-100 ">
-     <div class="row  pb-1 mt-1">
-         <div class="col-12 h-100 mb-3 d-flex justify-content-center">
-             <div class="col-12 col-md-3 "></div>
-             <div class="col-12 col-md-6 pb-5 px-4 d-flex justify-content-center ">
-                 <div class="card pb-1 w-75 rounded-4 opacidad-blanco">
-                     <div class="card-body  ">
-                         <h3 class="card-title fw-bold  mt-3 mb-4">INICIAR SESIÓN</h3>
-                         <form class="container-fluid px-0 py-1" id="account" method="post">
-                             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                             <div class="input-group mb-2">
-                                 <span class="input-group-text">
-                                     <i class="bi bi-person-vcard fs-3"></i>
-                                 </span>
-                                 <span class="form-floating">
-                                     <input asp-for="Input.Email" class="form-control focus-ring focus-ring-warning" autocomplete="current-password" aria-required="true" placeholder="contraseña" />
-                                     <label asp-for="Input.Email" class="form-label">Correo Electrónico</label>
-                                     <span asp-validation-for="Input.Email" class="text-danger"></span>
-                                 </span>
-                             </div>
 
+<div class="container-fluid vh-100">
+    <div class="row pb-1 mt-1">
+        <div class="col-12 h-100 mb-3 d-flex justify-content-center">
+            <div class="col-12 col-md-3"></div>
+            <div class="col-12 col-md-6 pb-5 px-4 d-flex justify-content-center">
+                <div class="card pb-1 w-75 rounded-4 opacidad-blanco">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold mt-3 mb-4">INICIAR SESIÓN</h3>
+                        <form class="container-fluid px-0 py-1" id="formIngresar" method="post">
+                            <div class="text-danger" role="alert" id="error-message"></div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person-vcard fs-3"></i>
+                                </span>
+                                <span class="form-floating">
+                                    <input id="correo" class="form-control focus-ring focus-ring-warning"
+                                           type="email" autocomplete="current-email" aria-required="true" placeholder="Correo Electrónico" />
+                                    <label for="correo" class="form-label">Correo Electrónico</label>
+                                    <span id="correo-error" class="text-danger"></span>
+                                </span>
+                            </div>
 
-                             <div class="input-group ">
-                                 <span class="input-group-text">
-                                     <i class="bi bi-person-lock fs-3"></i>
-                                 </span>
-                                 <span class="form-floating">
-                                     <input asp-for="Input.Password" class="form-control focus-ring focus-ring-warning" autocomplete="current-password" aria-required="true" placeholder="contraseña" />
-                                     <label asp-for="Input.Password" class="form-label">Contraseña</label>
-                                     <span asp-validation-for="Input.Password" class="text-danger"></span>
-                                 </span>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person-lock fs-3"></i>
+                                </span>
+                                <span class="form-floating">
+                                    <input id="password" class="form-control focus-ring focus-ring-warning"
+                                           type="password" autocomplete="current-password" aria-required="true" placeholder="Contraseña" />
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <span id="password-error" class="text-danger"></span>
+                                </span>
+                            </div>
 
-                             </div>
-
-
-                             <div class="mx-2 mt-2 form-check">
-                                 <input asp-for="Input.RememberMe" class="form-check-input">
-                                 <label class="form-check-label" asp-for="Input.RememberMe">
-                                     Recuérdame
-                                 </label>
-                             </div>
-
-
-
-                         </form>
-
-                     </div>
-                     <div class=" card-footer">
-                         <section class="row mx-2">
-
-                             <div class="my-1 col-6 px-1  d-flex justify-content-evenly">
-                                 <a type="button" asp-page="Views/Inicio/Index" class="btn btn-outline-dark px-lg-5 px-2">
-                                     Regresar
-                                 </a>
-                             </div>
-                             <div class="my-1 col-6 px-1  d-flex justify-content-evenly">
-                                 <button type="submit" id="login-submit" class="btn btn-orange px-lg-5 px-2">
-                                     Ingresar
-                                 </button>
-                             </div>
-
-                         </section>
-                         <div class="">
-                             <div class=" mt-2">
-                                 <a id="forgot-password" asp-page="./ForgotPassword">¿Olvidaste tu contraseña?</a>
-                             </div>
-                         </div>
-
-                     </div>
-                 </div>
-             </div>
-             <div class="col-12 col-md-3 h-0 "></div>
-         </div>
-     </div>
- </div>
-
-
--->
- 
+                            <div class="mx-2 mt-2 form-check">
+                                <input id="rememberMe" class="form-check-input" type="checkbox">
+                                <label class="form-check-label" for="rememberMe">
+                                    Recuérdame
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <section class="row mx-2">
+                            <div class="my-1 col-6 px-1 d-flex justify-content-evenly">
+                                <a type="button" asp-controller="Inicio" asp-action="Index" class="btn btn-outline-dark px-lg-5 px-2">
+                                    Regresar
+                                </a>
+                            </div>
+                            <div class="my-1 col-6 px-1 d-flex justify-content-evenly">
+                                <button type="submit" id="login-submit" class="btn btn-orange px-lg-5 px-2">
+                                    Ingresar
+                                </button>
+                            </div>
+                        </section>
+                        <div class="mt-2">
+                            <a id="forgot-password" href="#">¿Olvidaste tu contraseña?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 h-0"></div>
+        </div>
+    </div>
+</div>
