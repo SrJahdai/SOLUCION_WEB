@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.BD;
+namespace BEARFLIX.Models.DB;
 
 public partial class BearflixContext : DbContext
 {
@@ -50,17 +50,17 @@ public partial class BearflixContext : DbContext
     {
         modelBuilder.Entity<Banco>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Banco__3213E83F7C0FECA7");
+            entity.HasKey(e => e.Id).HasName("PK__Banco__3213E83FA5571CBC");
         });
 
         modelBuilder.Entity<Genero>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Genero__3213E83F26A199F5");
+            entity.HasKey(e => e.Id).HasName("PK__Genero__3213E83F81BF4720");
         });
 
         modelBuilder.Entity<Pelicula>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Pelicula__3213E83FCF987713");
+            entity.HasKey(e => e.Id).HasName("PK__Pelicula__3213E83FC5BFF2BE");
 
             entity.HasOne(d => d.IdProveedorNavigation).WithMany(p => p.Pelicula)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -77,7 +77,7 @@ public partial class BearflixContext : DbContext
                         .HasConstraintName("FK__PeliculaG__id_pe__6A30C649"),
                     j =>
                     {
-                        j.HasKey("IdPelicula", "IdGenero").HasName("PK__Pelicula__3C9BF1022A90ABE1");
+                        j.HasKey("IdPelicula", "IdGenero").HasName("PK__Pelicula__3C9BF102EC442E82");
                         j.HasIndex(new[] { "IdGenero" }, "idx_pelicula_genero");
                         j.IndexerProperty<int>("IdPelicula").HasColumnName("id_pelicula");
                         j.IndexerProperty<int>("IdGenero").HasColumnName("id_genero");
@@ -86,17 +86,17 @@ public partial class BearflixContext : DbContext
 
         modelBuilder.Entity<Permiso>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Permiso__3213E83FB880663B");
+            entity.HasKey(e => e.Id).HasName("PK__Permiso__3213E83F27B58F7C");
         });
 
         modelBuilder.Entity<Proveedor>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Proveedo__3213E83F0FB68EF1");
+            entity.HasKey(e => e.Id).HasName("PK__Proveedo__3213E83F6D534381");
         });
 
         modelBuilder.Entity<Puntaje>(entity =>
         {
-            entity.HasKey(e => new { e.IdUsuario, e.IdPelicula }).HasName("PK__Puntaje__856E13596C099847");
+            entity.HasKey(e => new { e.IdUsuario, e.IdPelicula }).HasName("PK__Puntaje__856E13595E49EB46");
 
             entity.HasOne(d => d.IdPeliculaNavigation).WithMany(p => p.Puntaje).HasConstraintName("FK__Puntaje__id_peli__6FE99F9F");
 
@@ -105,14 +105,14 @@ public partial class BearflixContext : DbContext
 
         modelBuilder.Entity<Reporte>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Reporte__3213E83F248E0B52");
+            entity.HasKey(e => e.Id).HasName("PK__Reporte__3213E83FF7DCCF28");
 
             entity.Property(e => e.FechaGeneracion).HasDefaultValueSql("(getdate())");
         });
 
         modelBuilder.Entity<ReporteProveedor>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ReporteP__3213E83F4836C512");
+            entity.HasKey(e => e.Id).HasName("PK__ReporteP__3213E83F566369D4");
 
             entity.HasOne(d => d.IdProveedorNavigation).WithMany(p => p.ReporteProveedor)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -129,7 +129,7 @@ public partial class BearflixContext : DbContext
 
         modelBuilder.Entity<Rol>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Rol__3213E83F183411EF");
+            entity.HasKey(e => e.Id).HasName("PK__Rol__3213E83F5800ABCC");
 
             entity.HasMany(d => d.IdPermiso).WithMany(p => p.IdRol)
                 .UsingEntity<Dictionary<string, object>>(
@@ -142,7 +142,7 @@ public partial class BearflixContext : DbContext
                         .HasConstraintName("FK__PermisoRo__id_ro__66603565"),
                     j =>
                     {
-                        j.HasKey("IdRol", "IdPermiso").HasName("PK__PermisoR__889447C49121E2CE");
+                        j.HasKey("IdRol", "IdPermiso").HasName("PK__PermisoR__889447C4CC326B4D");
                         j.IndexerProperty<int>("IdRol").HasColumnName("id_rol");
                         j.IndexerProperty<int>("IdPermiso").HasColumnName("id_permiso");
                     });
@@ -150,7 +150,7 @@ public partial class BearflixContext : DbContext
 
         modelBuilder.Entity<Tarjeta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Tarjeta__3213E83F63C13132");
+            entity.HasKey(e => e.Id).HasName("PK__Tarjeta__3213E83F925A740A");
 
             entity.HasOne(d => d.IdBancoNavigation).WithMany(p => p.Tarjeta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -165,17 +165,17 @@ public partial class BearflixContext : DbContext
 
         modelBuilder.Entity<TipoTarjeta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TipoTarj__3213E83F4C95282E");
+            entity.HasKey(e => e.Id).HasName("PK__TipoTarj__3213E83FA6262F83");
         });
 
         modelBuilder.Entity<TipoVenta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TipoVent__3213E83F956DBBC8");
+            entity.HasKey(e => e.Id).HasName("PK__TipoVent__3213E83FCF71F04A");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83FAE4A02B6");
+            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83F72829DD7");
 
             entity.Property(e => e.FechaRegistro).HasDefaultValueSql("(getdate())");
 
@@ -190,7 +190,7 @@ public partial class BearflixContext : DbContext
                         .HasConstraintName("FK__UsuarioRo__id_us__628FA481"),
                     j =>
                     {
-                        j.HasKey("IdUsuario", "IdRol").HasName("PK__UsuarioR__5895CFF3C224BD73");
+                        j.HasKey("IdUsuario", "IdRol").HasName("PK__UsuarioR__5895CFF32AE2DCD7");
                         j.IndexerProperty<int>("IdUsuario").HasColumnName("id_usuario");
                         j.IndexerProperty<int>("IdRol").HasColumnName("id_rol");
                     });
@@ -198,7 +198,7 @@ public partial class BearflixContext : DbContext
 
         modelBuilder.Entity<Venta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Venta__3213E83F96690ED1");
+            entity.HasKey(e => e.Id).HasName("PK__Venta__3213E83F936AECAF");
 
             entity.Property(e => e.FechaVenta).HasDefaultValueSql("(getdate())");
 

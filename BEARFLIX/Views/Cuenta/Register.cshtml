@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Registrar";
     Layout = "_logLayout";
 }
@@ -12,7 +11,7 @@
                 <div class="card w-75 rounded-4 opacidad-blanco">
                     <div class="card-body py-3 container-fluid">
                         <h3 class="card-title fw-bold mt-3 mb-4">REGÍSTRATE</h3>
-                        <form id="formRegistro" action="/api/autenticacion/registro" class="container-fluid px-0 py-1 opacidad-blanco" method="post">
+                        <form id="registerForm" action="javascript:void(0);" class="container-fluid px-0 py-1">
                             <div id="error-message" class="text-danger" role="alert"></div>
 
                             <div class="input-group mb-1 ">
@@ -20,8 +19,8 @@
                                     <i class="bi bi-person fs-3"></i>
                                 </span>
                                 <div class="form-floating">
-                                    <input type="text" class="form-control focus-ring focus-ring-warning" id="Nombre" placeholder="Nombre de usuario">
-                                    <label for="Nombre">Nombre de usuario</label>
+                                    <input type="text" class="form-control focus-ring focus-ring-warning" id="nombre" placeholder="Nombre de usuario">
+                                    <label for="nombre">Nombre de usuario</label>
                                 </div>
                             </div>
 
@@ -30,10 +29,9 @@
                                     <i class="bi bi-envelope-at fs-3"></i>
                                 </span>
                                 <div class="form-floating">
-                                    <input type="email" class="form-control focus-ring focus-ring-warning" id="Correo" required placeholder="Correo Electrónico">
-                                    <label for="Correo">Correo Electrónico</label>
+                                    <input type="email" class="form-control focus-ring focus-ring-warning" id="correo" required placeholder="Correo Electrónico">
+                                    <label for="correo">Correo Electrónico</label>
                                 </div>
-                                
                             </div>
 
                             <div class="input-group mb-1">
@@ -41,8 +39,8 @@
                                     <i class="bi bi-lock fs-3"></i>
                                 </span>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control focus-ring focus-ring-warning" id="Contrasena" required placeholder="Contraseña">
-                                    <label for="Contrasena">Contraseña</label>
+                                    <input type="password" class="form-control focus-ring focus-ring-warning" id="contrasena" required placeholder="Contraseña">
+                                    <label for="contrasena">Contraseña</label>
                                 </div>
                             </div>
 
@@ -61,8 +59,8 @@
                                     <i class="bi bi-cake2 fs-3"></i>
                                 </span>
                                 <div class="form-floating">
-                                    <input type="date" class="form-control focus-ring focus-ring-warning" id="FechaNacimiento" required placeholder="Fecha de Nacimiento">
-                                    <label for="FechaNacimiento">Fecha de Nacimiento</label>
+                                    <input type="date" class="form-control focus-ring focus-ring-warning" id="fechaNacimiento" required placeholder="Fecha de Nacimiento">
+                                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
                                 </div>
                             </div>
                             <section class="row mb-2 mt-3">
@@ -79,13 +77,12 @@
                             </section>
                         </form>
                     </div>
-
-                   
-                        
-                
                 </div>
             </div>
             <div class="col-12 col-md-3 h-0"></div>
         </div>
     </div>
 </div>
+
+
+

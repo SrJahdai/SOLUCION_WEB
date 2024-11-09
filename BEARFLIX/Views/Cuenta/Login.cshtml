@@ -12,7 +12,7 @@
                 <div class="card pb-1 w-75 rounded-4 opacidad-blanco">
                     <div class="card-body">
                         <h3 class="card-title fw-bold mt-3 mb-4">INICIAR SESIÓN</h3>
-                        <form class="container-fluid px-0 py-1" id="formIngresar" method="post">
+                        <form class="container-fluid px-0 py-1" id="loginForm" method="post">
                             <div class="text-danger" role="alert" id="error-message"></div>
                             <div class="input-group mb-2">
                                 <span class="input-group-text">
@@ -44,25 +44,25 @@
                                     Recuérdame
                                 </label>
                             </div>
+
+                            <section class="row mx-2">
+                                <div class="my-1 col-6 px-1 d-flex justify-content-evenly">
+                                    <a type="button" asp-controller="Inicio" asp-action="Index" class="btn btn-outline-dark px-lg-5 px-2">
+                                        Regresar
+                                    </a>
+                                </div>
+                                <div class="my-1 col-6 px-1 d-flex justify-content-evenly">
+                                    <button type="submit" id="login-submit" class="btn btn-orange px-lg-5 px-2">
+                                        Ingresar
+                                    </button>
+                                </div>
+                            </section>
+                            <div class="mt-2">
+                                <a id="forgot-password" href="#">¿Olvidaste tu contraseña?</a>
+                            </div>
                         </form>
                     </div>
-                    <div class="card-footer">
-                        <section class="row mx-2">
-                            <div class="my-1 col-6 px-1 d-flex justify-content-evenly">
-                                <a type="button" asp-controller="Inicio" asp-action="Index" class="btn btn-outline-dark px-lg-5 px-2">
-                                    Regresar
-                                </a>
-                            </div>
-                            <div class="my-1 col-6 px-1 d-flex justify-content-evenly">
-                                <button type="submit" id="login-submit" class="btn btn-orange px-lg-5 px-2">
-                                    Ingresar
-                                </button>
-                            </div>
-                        </section>
-                        <div class="mt-2">
-                            <a id="forgot-password" href="#">¿Olvidaste tu contraseña?</a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-12 col-md-3 h-0"></div>

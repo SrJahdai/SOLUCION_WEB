@@ -1,6 +1,6 @@
 
-using BEARFLIX.Models.BD;
-using BEARFLIX.Servicios;
+using BEARFLIX.Models.DB;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,9 +11,7 @@ builder.Services.AddDbContext<BearflixContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddScoped<Autenticacion>();
 
-builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 
 builder.Services.AddControllersWithViews();

@@ -21,7 +21,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Banco__3213E83F7C0FECA7", x => x.id);
+                    table.PrimaryKey("PK__Banco__3213E83FA5571CBC", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,20 +34,20 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Genero__3213E83F26A199F5", x => x.id);
+                    table.PrimaryKey("PK__Genero__3213E83F81BF4720", x => x.id);
                 });
 
-            //migrationBuilder.CreateTable(
-            //    name: "GeneroPelicula",
-            //    columns: table => new
-            //    {
-            //        IdGenero = table.Column<int>(type: "int", nullable: false),
-            //        IdPelicula = table.Column<int>(type: "int", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_GeneroPelicula", x => new { x.IdGenero, x.IdPelicula });
-            //    });
+            migrationBuilder.CreateTable(
+                name: "GeneroPelicula",
+                columns: table => new
+                {
+                    IdGenero = table.Column<int>(type: "int", nullable: false),
+                    IdPelicula = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GeneroPelicula", x => new { x.IdGenero, x.IdPelicula });
+                });
 
             migrationBuilder.CreateTable(
                 name: "Permiso",
@@ -59,7 +59,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Permiso__3213E83FB880663B", x => x.id);
+                    table.PrimaryKey("PK__Permiso__3213E83F27B58F7C", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,7 +73,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Proveedo__3213E83F0FB68EF1", x => x.id);
+                    table.PrimaryKey("PK__Proveedo__3213E83F6D534381", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -91,7 +91,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Reporte__3213E83F248E0B52", x => x.id);
+                    table.PrimaryKey("PK__Reporte__3213E83FF7DCCF28", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,20 +104,20 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Rol__3213E83F183411EF", x => x.id);
+                    table.PrimaryKey("PK__Rol__3213E83F5800ABCC", x => x.id);
                 });
 
-            //migrationBuilder.CreateTable(
-            //    name: "RolUsuario",
-            //    columns: table => new
-            //    {
-            //        IdRol = table.Column<int>(type: "int", nullable: false),
-            //        IdUsuario = table.Column<int>(type: "int", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_RolUsuario", x => new { x.IdRol, x.IdUsuario });
-            //    });
+            migrationBuilder.CreateTable(
+                name: "RolUsuario",
+                columns: table => new
+                {
+                    IdRol = table.Column<int>(type: "int", nullable: false),
+                    IdUsuario = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RolUsuario", x => new { x.IdRol, x.IdUsuario });
+                });
 
             migrationBuilder.CreateTable(
                 name: "TipoTarjeta",
@@ -129,7 +129,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__TipoTarj__3213E83F4C95282E", x => x.id);
+                    table.PrimaryKey("PK__TipoTarj__3213E83FA6262F83", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -142,7 +142,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__TipoVent__3213E83F956DBBC8", x => x.id);
+                    table.PrimaryKey("PK__TipoVent__3213E83FCF71F04A", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,7 +161,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Usuario__3213E83FAE4A02B6", x => x.id);
+                    table.PrimaryKey("PK__Usuario__3213E83F72829DD7", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -183,7 +183,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Pelicula__3213E83FCF987713", x => x.id);
+                    table.PrimaryKey("PK__Pelicula__3213E83FC5BFF2BE", x => x.id);
                     table.ForeignKey(
                         name: "FK__Pelicula__id_pro__5441852A",
                         column: x => x.id_proveedor,
@@ -200,7 +200,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__PermisoR__889447C49121E2CE", x => new { x.id_rol, x.id_permiso });
+                    table.PrimaryKey("PK__PermisoR__889447C4CC326B4D", x => new { x.id_rol, x.id_permiso });
                     table.ForeignKey(
                         name: "FK__PermisoRo__id_pe__6754599E",
                         column: x => x.id_permiso,
@@ -229,7 +229,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__ReporteP__3213E83F4836C512", x => x.id);
+                    table.PrimaryKey("PK__ReporteP__3213E83F566369D4", x => x.id);
                     table.ForeignKey(
                         name: "FK__ReportePr__id_pr__778AC167",
                         column: x => x.id_proveedor,
@@ -263,7 +263,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Tarjeta__3213E83F63C13132", x => x.id);
+                    table.PrimaryKey("PK__Tarjeta__3213E83F925A740A", x => x.id);
                     table.ForeignKey(
                         name: "FK__Tarjeta__id_banc__5DCAEF64",
                         column: x => x.id_banco,
@@ -291,7 +291,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__UsuarioR__5895CFF3C224BD73", x => new { x.id_usuario, x.id_rol });
+                    table.PrimaryKey("PK__UsuarioR__5895CFF32AE2DCD7", x => new { x.id_usuario, x.id_rol });
                     table.ForeignKey(
                         name: "FK__UsuarioRo__id_ro__6383C8BA",
                         column: x => x.id_rol,
@@ -315,7 +315,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Pelicula__3C9BF1022A90ABE1", x => new { x.id_pelicula, x.id_genero });
+                    table.PrimaryKey("PK__Pelicula__3C9BF102EC442E82", x => new { x.id_pelicula, x.id_genero });
                     table.ForeignKey(
                         name: "FK__PeliculaG__id_ge__6B24EA82",
                         column: x => x.id_genero,
@@ -340,7 +340,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Puntaje__856E13596C099847", x => new { x.id_usuario, x.id_pelicula });
+                    table.PrimaryKey("PK__Puntaje__856E13595E49EB46", x => new { x.id_usuario, x.id_pelicula });
                     table.ForeignKey(
                         name: "FK__Puntaje__id_peli__6FE99F9F",
                         column: x => x.id_pelicula,
@@ -370,7 +370,7 @@ namespace BEARFLIX.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Venta__3213E83F96690ED1", x => x.id);
+                    table.PrimaryKey("PK__Venta__3213E83F936AECAF", x => x.id);
                     table.ForeignKey(
                         name: "FK__Venta__id_pelicu__59063A47",
                         column: x => x.id_pelicula,
@@ -391,13 +391,13 @@ namespace BEARFLIX.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "UQ__Banco__298336B6E10BFCCA",
+                name: "UQ__Banco__298336B6E5374AAD",
                 table: "Banco",
                 column: "descripcion",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "UQ__Genero__298336B65EE00DD8",
+                name: "UQ__Genero__298336B6F420DDEC",
                 table: "Genero",
                 column: "descripcion",
                 unique: true);
@@ -413,7 +413,7 @@ namespace BEARFLIX.Migrations
                 column: "id_proveedor");
 
             migrationBuilder.CreateIndex(
-                name: "UQ__Pelicula__38FA640F354E3FB3",
+                name: "UQ__Pelicula__38FA640FE0628EFC",
                 table: "Pelicula",
                 column: "titulo",
                 unique: true);
@@ -424,7 +424,7 @@ namespace BEARFLIX.Migrations
                 column: "id_genero");
 
             migrationBuilder.CreateIndex(
-                name: "UQ__Permiso__298336B6A185AE59",
+                name: "UQ__Permiso__298336B66B7BA88C",
                 table: "Permiso",
                 column: "descripcion",
                 unique: true);
@@ -440,7 +440,7 @@ namespace BEARFLIX.Migrations
                 column: "descripcion");
 
             migrationBuilder.CreateIndex(
-                name: "UQ__Proveedo__298336B65FA8A577",
+                name: "UQ__Proveedo__298336B681CD7E70",
                 table: "Proveedor",
                 column: "descripcion",
                 unique: true);
@@ -466,13 +466,13 @@ namespace BEARFLIX.Migrations
                 column: "id_tipo");
 
             migrationBuilder.CreateIndex(
-                name: "UQ__ReporteP__97F8BA38BBAF9EFF",
+                name: "UQ__ReporteP__97F8BA384A60412F",
                 table: "ReporteProveedor",
                 columns: new[] { "id_reporte", "id_proveedor", "id_tipo" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "UQ__Rol__298336B66BED63A3",
+                name: "UQ__Rol__298336B600AECE91",
                 table: "Rol",
                 column: "descripcion",
                 unique: true);
@@ -493,13 +493,13 @@ namespace BEARFLIX.Migrations
                 column: "id_usuario");
 
             migrationBuilder.CreateIndex(
-                name: "UQ__TipoTarj__298336B699D1185C",
+                name: "UQ__TipoTarj__298336B612FFAD09",
                 table: "TipoTarjeta",
                 column: "descripcion",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "UQ__TipoVent__298336B6C25CFFEF",
+                name: "UQ__TipoVent__298336B6C6C8068D",
                 table: "TipoVenta",
                 column: "descripcion",
                 unique: true);
@@ -511,7 +511,7 @@ namespace BEARFLIX.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "UQ__Usuario__2A586E0B49595112",
+                name: "UQ__Usuario__2A586E0B1F911ACD",
                 table: "Usuario",
                 column: "correo",
                 unique: true);

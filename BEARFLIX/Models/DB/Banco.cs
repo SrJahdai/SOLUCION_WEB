@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.BD;
+namespace BEARFLIX.Models.DB;
 
-[Index("Descripcion", Name = "UQ__Banco__298336B6E10BFCCA", IsUnique = true)]
+[Index("Descripcion", Name = "UQ__Banco__298336B6E5374AAD", IsUnique = true)]
 public partial class Banco
 {
     [Key]

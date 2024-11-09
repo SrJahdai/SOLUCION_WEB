@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.BD;
+namespace BEARFLIX.Models.DB;
 
-[Index("Titulo", Name = "UQ__Pelicula__38FA640F354E3FB3", IsUnique = true)]
+[Index("Titulo", Name = "UQ__Pelicula__38FA640FE0628EFC", IsUnique = true)]
 [Index("Titulo", Name = "idx_pelicula_titulo")]
 public partial class Pelicula
 {

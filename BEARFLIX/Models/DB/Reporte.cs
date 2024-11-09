@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.BD;
+namespace BEARFLIX.Models.DB;
 
 public partial class Reporte
 {

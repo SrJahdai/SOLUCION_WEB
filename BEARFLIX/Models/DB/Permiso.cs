@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.BD;
+namespace BEARFLIX.Models.DB;
 
-[Index("Descripcion", Name = "UQ__Permiso__298336B6A185AE59", IsUnique = true)]
+[Index("Descripcion", Name = "UQ__Permiso__298336B66B7BA88C", IsUnique = true)]
 public partial class Permiso
 {
     [Key]

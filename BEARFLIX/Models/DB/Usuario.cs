@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.BD;
+namespace BEARFLIX.Models.DB;
 
-[Index("Correo", Name = "UQ__Usuario__2A586E0B49595112", IsUnique = true)]
+[Index("Correo", Name = "UQ__Usuario__2A586E0B1F911ACD", IsUnique = true)]
 [Index("Correo", Name = "idx_usuario_correo", IsUnique = true)]
 public partial class Usuario
 {

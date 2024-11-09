@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.BD;
+namespace BEARFLIX.Models.DB;
 
-[Index("Descripcion", Name = "UQ__Proveedo__298336B65FA8A577", IsUnique = true)]
+[Index("Descripcion", Name = "UQ__Proveedo__298336B681CD7E70", IsUnique = true)]
 [Index("Descripcion", Name = "idx_proveedor_descripcion")]
 public partial class Proveedor
 {
