@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BEARFLIX</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/usuario.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BEARFLIX.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/iconos/bootstrap-icons.min.css">
+</head>
+<body class="bg-dark">
+    <header>
+        <nav id="barraNav" class="navbar bg-dark fixed-top text-light" data-bs-theme="dark">
+            <div class="container-fluid">
+
+
+                <button class="navbar-toggler me-1" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="mx-2 d-none d-md-flex me-auto">
+                    <form class="input-group " role="search">
+                        <input class="form-control focus-ring focus-ring-warning" type="search"
+                               placeholder="Buscar Película" " aria-label=" Buscar Película">
+                        <button class="input-group-text btn border border-start-0 bg-dark" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="mx-3 d-none d-md-flex ms-auto">
+                    <div id="nombreUsuario" class="font-monospace mt-2 me-2">Nombre del Usuario</div>
+                    <span class="vr mx-2"></span>
+                    <img src="ruta-de-la-imagen.jpg" alt="" class="rounded-circle ms-2" id="ftoPerfil">
+
+                </div>
+
+                <div class="offcanvas offcanvas-start px-2" tabindex="-1" id="offcanvasNavbar"
+                     aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header d-flex align-items-start">
+                        <div class="mx-3 d-md-none flex-column ms-auto d-flex justify-content-center  w-100">
+                            <img src="ruta-de-la-imagen.jpg" alt="" class="rounded-circle mx-auto mb-4" id="fotoPerfil">
+                            <figure class="text-center">
+                                <blockquote class="blockquote">
+                                    <h4 class="font-monospace">Nombre de Usuario</h4>
+                                </blockquote>
+                                <figcaption class="blockquote-footer">
+                                    <cite id="rol" title="Source Title">Rol</cite>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                    </div>
+                    <span class="linea w-100 d-md-none"></span>
+
+                    <div class="offcanvas-body">
+
+                        <div class=" d-md-none me-auto">
+                            <form class="input-group " role="search">
+                                <input class="form-control focus-ring focus-ring-warning" type="search"
+                                       placeholder="Buscar Película" " aria-label=" Buscar Película">
+                                <button class="input-group-text btn border border-start-0 bg-dark" type="submit">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div>
+        <main role="main" class="container-fluid">
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/usuario.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

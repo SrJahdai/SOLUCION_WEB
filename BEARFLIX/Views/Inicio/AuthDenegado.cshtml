@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Denegado";
+    Layout = "_Layout"; // Si tienes un layout específico para vistas de autenticación, usa este.
+}
+
+<div class="container text-center my-5">
+    <div class="card border-warning mx-auto" style="max-width: 400px;">
+        <div class="card-body">
+            <h1 class="display-4 text-warning">Acceso Denegado</h1>
+            <p class="lead mt-3">No tienes permisos para acceder a esta página.</p>
+            <p class="text-muted">Si crees que esto es un error, contacta con el administrador.</p>
+            <a asp-asp-controller="Inicio" asp-action="Index" class="btn btn-outline-primary mt-3">
+                Volver al Inicio
+            </a>
+        </div>
+    </div>
+</div>

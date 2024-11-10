@@ -1,0 +1,32 @@
+﻿.focus-ring-warning:focus {
+    border-color: rgba(var(--bs-warning-rgb), .25) !important;
+}
+
+.btn-orange {
+    background-color: #FF9201 !important;
+    color: white !important;
+}
+
+    .btn-orange:hover {
+        background-color: #ff9f22 !important;
+    }
+
+#ftoPerfil {
+    width: 35px;
+    height: 35px;
+}
+
+#fotoPerfil {
+    width: 100px;
+    height: 100px;
+}
+
+.linea {
+    height: 1px;
+    background-color: #616161;
+}
+
+#barraNav {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid #FF9201;
+}

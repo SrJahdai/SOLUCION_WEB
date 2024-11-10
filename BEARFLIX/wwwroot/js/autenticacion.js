@@ -1,54 +1,100 @@
 ﻿$(document).ready(function () {
 
     function mostrarCarga() {
-        $('#loading-screen').css('visibility', 'visible');
+        $("#loading-screen").css("visibility", "visible");
     }
 
     function ocultarCarga() {
-        $('#loading-screen').css('visibility', 'hidden');
+        $("#loading-screen").css("visibility", "hidden");
     }
-    
 
-    $("#registerForm").on("submit",function (e) {
+    $("#loginForm").on("submit", function (e) {
         e.preventDefault();
 
         mostrarCarga();
 
-        var nombre = $("#nombre").val();
-        var correo = $("#correo").val();
-        var contrasena = $("#contrasena").val();
-        var confirmarContrasena = $("#confirmarContrasena").val();
-        var fechaNacimiento = $("#fechaNacimiento").val();
-
-        
         $(".form-control").removeClass("is-invalid");
         $("#error-message").text("");
 
-        var valid = true;
+        // Datos del formulario
+        let correo = $("#correo").val();
+        let contrasena = $("#password").val();
+        let rememberMe = $("#rememberMe").prop("checked");
 
-        // Validación de la longitud de la contraseña
+        let loginData = {
+            Correo: correo,
+            Contrasena: contrasena,
+            Recuerdame: rememberMe
+        };
+
+        // Petición AJAX
+        $.ajax({
+            url: "/api/auth/login",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(loginData),
+            success: function (response) {
+                ocultarCarga();
+                window.location.href = '/Usuario/Index'; 
+                Swal.fire({
+                    position: 'center',
+                    iconHtml: '<i class="bi bi-person-check"></i>',
+                    title: 'Sesión iniciada',
+                    text: 'Bienvenido, [Nombre del Usuario]',
+                    iconColor: 'green', 
+                    toast: true, 
+                    showConfirmButton: false, 
+                    timer: 3000 
+                });
+                
+            },
+            error: function (xhr, status, error) {
+                ocultarCarga();
+                $("#correo").addClass("is-invalid");
+                $("#password").addClass("is-invalid");
+                $("#error-message").text("Las credenciales no coinciden, intente nuevamente.");
+            }
+        });
+    });
+
+
+
+
+    $("#registerForm").on("submit", function (e) {
+        e.preventDefault();
+
+        mostrarCarga();
+
+        let nombre = $("#nombre").val();
+        let correo = $("#correo").val();
+        let contrasena = $("#contrasena").val();
+        let confirmarContrasena = $("#confirmarContrasena").val();
+        let fechaNacimiento = $("#fechaNacimiento").val();
+
+        $(".form-control").removeClass("is-invalid");
+        $("#error-message").text("");
+
+        let valid = true;
+
         if (contrasena.length < 6) {
             valid = false;
             $("#contrasena").addClass("is-invalid");
             $("#error-message").text("La contraseña debe tener al menos 6 caracteres.");
         }
 
-        // Verificar que la contraseña no contenga caracteres especiales no permitidos
-        var regex = /[!^&*()_+={}\[\]|\\:;"'<>,.?/`~]/;
+        var regex = /[!^&*()_+={}\[\]|\\:'´"<>,.?/`~]/;
         if (regex.test(contrasena)) {
             valid = false;
             $("#contrasena").addClass("is-invalid");
             $("#error-message").text("La contraseña solo puede contener los caracteres especiales: @, #, $, %.");
         }
 
-        // Validación de que las contraseñas coinciden
         if (contrasena !== confirmarContrasena) {
             valid = false;
             $("#confirmarContrasena").addClass("is-invalid");
             $("#error-message").text("Las contraseñas no coinciden.");
         }
 
-        // Validación del correo electrónico (estructura de correo válida)
         var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(correo)) {
             valid = false;
@@ -58,10 +104,10 @@
 
         if (!valid) {
             ocultarCarga()
-            return; 
+            return;
         }
 
-        var registerData = {
+        let registerData = {
             Nombre: nombre,
             Correo: correo,
             Contrasena: contrasena,
@@ -76,17 +122,29 @@
             data: JSON.stringify(registerData),
             success: function (response) {
                 ocultarCarga();
-                alert(response); 
+                window.location.href = 'Login';
+                Swal.fire({
+                    iconHtml: '<i class="bi bi-person-add"></i>',
+                    iconColor: 'green',
+                    title: "¡Éxito!",
+                    text: "El usuario se registró correctamente. Inicie sesión.",
+                    showConfirmButton: false, 
+                    timer: 3000 
+                 });
                 
             },
             error: function (xhr, status, error) {
                 ocultarCarga();
-                var errorMessage = xhr.responseText; // El mensaje del error
-                $("#error-message").text(errorMessage); // Mostrar el mensaje de error en el frontend
+                var errorMessage = xhr.responseText;
+                $("#error-message").text(errorMessage);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Ups...",
+                    text: "Algo salió mal",
+                    footer: '<a href="/Inicio/Contactanos">Si el problema persite, contáctanos</a>'
+                });
             }
         });
-
-        
-
     });
 });

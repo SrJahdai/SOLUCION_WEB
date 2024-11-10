@@ -6,10 +6,12 @@ namespace BEARFLIX.Controllers
     {
         public IActionResult Login()
         {
+            ViewData["Layout"] = "~/Views/Shared/_logLayout.cshtml";
             return View("Login");
         }
         public IActionResult Register()
         {
+            ViewData["Layout"] = "~/Views/Shared/_logLayout.cshtml";
             return View("Register");
         }
     }
