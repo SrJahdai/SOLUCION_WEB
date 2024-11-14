@@ -11,6 +11,15 @@
         background-color: #ff9f22 !important;
     }
 
+main {
+    margin-top: 80px; /* Ajusta según la altura de tu navbar */
+}
+.icono-grande {
+    font-size: 100px;
+    width: 100px;
+    height: 100px;
+}
+
 #ftoPerfil {
     width: 35px;
     height: 35px;

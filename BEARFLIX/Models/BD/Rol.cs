@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.DB;
+namespace BEARFLIX.Models.BD;
 
-[Index("Descripcion", Name = "UQ__Rol__298336B600AECE91", IsUnique = true)]
+[Index("Descripcion", Name = "UQ__Rol__298336B62AAA1E95", IsUnique = true)]
 public partial class Rol
 {
     [Key]

@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.DB;
+namespace BEARFLIX.Models.BD;
 
-[Index("IdReporte", "IdProveedor", "IdTipo", Name = "UQ__ReporteP__97F8BA384A60412F", IsUnique = true)]
+[Index("IdReporte", "IdProveedor", "IdTipo", Name = "UQ__ReporteP__97F8BA38FD28AF8C", IsUnique = true)]
 [Index("IdProveedor", "IdTipo", Name = "idx_reporte_proveedor_tipo")]
 public partial class ReporteProveedor
 {

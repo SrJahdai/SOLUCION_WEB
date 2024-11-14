@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.DB;
+namespace BEARFLIX.Models.BD;
 
 public partial class BearflixContext : DbContext
 {
@@ -50,34 +50,34 @@ public partial class BearflixContext : DbContext
     {
         modelBuilder.Entity<Banco>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Banco__3213E83FA5571CBC");
+            entity.HasKey(e => e.Id).HasName("PK__Banco__3213E83F453A5249");
         });
 
         modelBuilder.Entity<Genero>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Genero__3213E83F81BF4720");
+            entity.HasKey(e => e.Id).HasName("PK__Genero__3213E83F45240470");
         });
 
         modelBuilder.Entity<Pelicula>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Pelicula__3213E83FC5BFF2BE");
+            entity.HasKey(e => e.Id).HasName("PK__Pelicula__3213E83FBFB2EB9D");
 
             entity.HasOne(d => d.IdProveedorNavigation).WithMany(p => p.Pelicula)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Pelicula__id_pro__5441852A");
+                .HasConstraintName("FK__Pelicula__id_pro__66603565");
 
             entity.HasMany(d => d.IdGenero).WithMany(p => p.IdPelicula)
                 .UsingEntity<Dictionary<string, object>>(
                     "PeliculaGenero",
                     r => r.HasOne<Genero>().WithMany()
                         .HasForeignKey("IdGenero")
-                        .HasConstraintName("FK__PeliculaG__id_ge__6B24EA82"),
+                        .HasConstraintName("FK__PeliculaG__id_ge__7D439ABD"),
                     l => l.HasOne<Pelicula>().WithMany()
                         .HasForeignKey("IdPelicula")
-                        .HasConstraintName("FK__PeliculaG__id_pe__6A30C649"),
+                        .HasConstraintName("FK__PeliculaG__id_pe__7C4F7684"),
                     j =>
                     {
-                        j.HasKey("IdPelicula", "IdGenero").HasName("PK__Pelicula__3C9BF102EC442E82");
+                        j.HasKey("IdPelicula", "IdGenero").HasName("PK__Pelicula__3C9BF10231928B9A");
                         j.HasIndex(new[] { "IdGenero" }, "idx_pelicula_genero");
                         j.IndexerProperty<int>("IdPelicula").HasColumnName("id_pelicula");
                         j.IndexerProperty<int>("IdGenero").HasColumnName("id_genero");
@@ -86,63 +86,63 @@ public partial class BearflixContext : DbContext
 
         modelBuilder.Entity<Permiso>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Permiso__3213E83F27B58F7C");
+            entity.HasKey(e => e.Id).HasName("PK__Permiso__3213E83F17871AFC");
         });
 
         modelBuilder.Entity<Proveedor>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Proveedo__3213E83F6D534381");
+            entity.HasKey(e => e.Id).HasName("PK__Proveedo__3213E83FB22503CD");
         });
 
         modelBuilder.Entity<Puntaje>(entity =>
         {
-            entity.HasKey(e => new { e.IdUsuario, e.IdPelicula }).HasName("PK__Puntaje__856E13595E49EB46");
+            entity.HasKey(e => new { e.IdUsuario, e.IdPelicula }).HasName("PK__Puntaje__856E135952663870");
 
-            entity.HasOne(d => d.IdPeliculaNavigation).WithMany(p => p.Puntaje).HasConstraintName("FK__Puntaje__id_peli__6FE99F9F");
+            entity.HasOne(d => d.IdPeliculaNavigation).WithMany(p => p.Puntaje).HasConstraintName("FK__Puntaje__id_peli__02084FDA");
 
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Puntaje).HasConstraintName("FK__Puntaje__id_usua__6EF57B66");
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Puntaje).HasConstraintName("FK__Puntaje__id_usua__01142BA1");
         });
 
         modelBuilder.Entity<Reporte>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Reporte__3213E83FF7DCCF28");
+            entity.HasKey(e => e.Id).HasName("PK__Reporte__3213E83F24E5CBEB");
 
             entity.Property(e => e.FechaGeneracion).HasDefaultValueSql("(getdate())");
         });
 
         modelBuilder.Entity<ReporteProveedor>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ReporteP__3213E83F566369D4");
+            entity.HasKey(e => e.Id).HasName("PK__ReporteP__3213E83FFF906C72");
 
             entity.HasOne(d => d.IdProveedorNavigation).WithMany(p => p.ReporteProveedor)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ReportePr__id_pr__778AC167");
+                .HasConstraintName("FK__ReportePr__id_pr__09A971A2");
 
             entity.HasOne(d => d.IdReporteNavigation).WithMany(p => p.ReporteProveedor)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ReportePr__id_re__76969D2E");
+                .HasConstraintName("FK__ReportePr__id_re__08B54D69");
 
             entity.HasOne(d => d.IdTipoNavigation).WithMany(p => p.ReporteProveedor)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ReportePr__id_ti__787EE5A0");
+                .HasConstraintName("FK__ReportePr__id_ti__0A9D95DB");
         });
 
         modelBuilder.Entity<Rol>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Rol__3213E83F5800ABCC");
+            entity.HasKey(e => e.Id).HasName("PK__Rol__3213E83FF5DAB9A0");
 
             entity.HasMany(d => d.IdPermiso).WithMany(p => p.IdRol)
                 .UsingEntity<Dictionary<string, object>>(
                     "PermisoRol",
                     r => r.HasOne<Permiso>().WithMany()
                         .HasForeignKey("IdPermiso")
-                        .HasConstraintName("FK__PermisoRo__id_pe__6754599E"),
+                        .HasConstraintName("FK__PermisoRo__id_pe__797309D9"),
                     l => l.HasOne<Rol>().WithMany()
                         .HasForeignKey("IdRol")
-                        .HasConstraintName("FK__PermisoRo__id_ro__66603565"),
+                        .HasConstraintName("FK__PermisoRo__id_ro__787EE5A0"),
                     j =>
                     {
-                        j.HasKey("IdRol", "IdPermiso").HasName("PK__PermisoR__889447C4CC326B4D");
+                        j.HasKey("IdRol", "IdPermiso").HasName("PK__PermisoR__889447C4CE063B3D");
                         j.IndexerProperty<int>("IdRol").HasColumnName("id_rol");
                         j.IndexerProperty<int>("IdPermiso").HasColumnName("id_permiso");
                     });
@@ -150,32 +150,32 @@ public partial class BearflixContext : DbContext
 
         modelBuilder.Entity<Tarjeta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Tarjeta__3213E83F925A740A");
+            entity.HasKey(e => e.Id).HasName("PK__Tarjeta__3213E83FA1E6AB09");
 
             entity.HasOne(d => d.IdBancoNavigation).WithMany(p => p.Tarjeta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Tarjeta__id_banc__5DCAEF64");
+                .HasConstraintName("FK__Tarjeta__id_banc__6FE99F9F");
 
             entity.HasOne(d => d.IdTipoNavigation).WithMany(p => p.Tarjeta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Tarjeta__id_tipo__5EBF139D");
+                .HasConstraintName("FK__Tarjeta__id_tipo__70DDC3D8");
 
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Tarjeta).HasConstraintName("FK__Tarjeta__id_usua__5FB337D6");
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Tarjeta).HasConstraintName("FK__Tarjeta__id_usua__71D1E811");
         });
 
         modelBuilder.Entity<TipoTarjeta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TipoTarj__3213E83FA6262F83");
+            entity.HasKey(e => e.Id).HasName("PK__TipoTarj__3213E83FA6CA5840");
         });
 
         modelBuilder.Entity<TipoVenta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TipoVent__3213E83FCF71F04A");
+            entity.HasKey(e => e.Id).HasName("PK__TipoVent__3213E83F0CA5A2F4");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83F72829DD7");
+            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83F1BCC89CA");
 
             entity.Property(e => e.FechaRegistro).HasDefaultValueSql("(getdate())");
 
@@ -184,13 +184,13 @@ public partial class BearflixContext : DbContext
                     "UsuarioRol",
                     r => r.HasOne<Rol>().WithMany()
                         .HasForeignKey("IdRol")
-                        .HasConstraintName("FK__UsuarioRo__id_ro__6383C8BA"),
+                        .HasConstraintName("FK__UsuarioRo__id_ro__75A278F5"),
                     l => l.HasOne<Usuario>().WithMany()
                         .HasForeignKey("IdUsuario")
-                        .HasConstraintName("FK__UsuarioRo__id_us__628FA481"),
+                        .HasConstraintName("FK__UsuarioRo__id_us__74AE54BC"),
                     j =>
                     {
-                        j.HasKey("IdUsuario", "IdRol").HasName("PK__UsuarioR__5895CFF32AE2DCD7");
+                        j.HasKey("IdUsuario", "IdRol").HasName("PK__UsuarioR__5895CFF39031F745");
                         j.IndexerProperty<int>("IdUsuario").HasColumnName("id_usuario");
                         j.IndexerProperty<int>("IdRol").HasColumnName("id_rol");
                     });
@@ -198,17 +198,17 @@ public partial class BearflixContext : DbContext
 
         modelBuilder.Entity<Venta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Venta__3213E83F936AECAF");
+            entity.HasKey(e => e.Id).HasName("PK__Venta__3213E83FD2C93F27");
 
             entity.Property(e => e.FechaVenta).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.IdPeliculaNavigation).WithMany(p => p.Venta).HasConstraintName("FK__Venta__id_pelicu__59063A47");
+            entity.HasOne(d => d.IdPeliculaNavigation).WithMany(p => p.Venta).HasConstraintName("FK__Venta__id_pelicu__6B24EA82");
 
             entity.HasOne(d => d.IdTipoNavigation).WithMany(p => p.Venta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Venta__id_tipo__59FA5E80");
+                .HasConstraintName("FK__Venta__id_tipo__6C190EBB");
 
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Venta).HasConstraintName("FK__Venta__id_usuari__5812160E");
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Venta).HasConstraintName("FK__Venta__id_usuari__6A30C649");
         });
 
         OnModelCreatingPartial(modelBuilder);

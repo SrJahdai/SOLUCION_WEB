@@ -1,4 +1,4 @@
-﻿using BEARFLIX.Models.DB;
+﻿using BEARFLIX.Models.BD;
 using BEARFLIX.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -72,44 +72,43 @@ namespace BEARFLIX.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var user = await _context.Usuario
+                .Include(u => u.IdRol) // Asegúrate de incluir la colección de roles
                 .FirstOrDefaultAsync(u => u.Correo == loginDto.Correo);
 
-            if (user == null)
+            if (user == null || !VerifyPassword(loginDto.Contrasena, user.Contrasena))
             {
-                _logger.LogWarning($"El correo {loginDto.Correo} no se encuentra registrado.");
                 return Unauthorized("Correo o contraseña incorrectos.");
             }
 
-            if (!VerifyPassword(loginDto.Contrasena, user.Contrasena))
+            // Verifica que el usuario tenga roles asignados
+            string rolDescripcion = user.IdRol.FirstOrDefault().Descripcion;
+
+            if (string.IsNullOrEmpty(rolDescripcion))
             {
-                _logger.LogWarning($"La contraseña ingresada no es correcta para el usuario {loginDto.Correo}.");
-                return Unauthorized("Correo o contraseña incorrectos.");
+                return Unauthorized("El usuario no tiene un rol asignado.");
             }
 
-            // Claims de usuario
             var claims = new List<Claim>
     {
         new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
         new Claim(ClaimTypes.Name, user.Nombre),
         new Claim(ClaimTypes.Email, user.Correo),
+        new Claim(ClaimTypes.Role, rolDescripcion) // Aquí se asigna el rol
     };
 
-            var claimsIdentity = new ClaimsIdentity(claims, "login");
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
             {
                 IsPersistent = loginDto.Recuerdame,
                 ExpiresUtc = loginDto.Recuerdame ? DateTimeOffset.UtcNow.AddDays(30) : DateTimeOffset.UtcNow.AddMinutes(30),
             };
 
-            // Iniciar sesión con cookie
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity), authProperties);
 
-            _logger.LogInformation($"Usuario {user.Nombre} ha iniciado sesión correctamente.");
-
-            // Devuelve un mensaje de éxito
             return Ok(new { message = "Login exitoso" });
         }
+
 
 
         // Logout de usuario

@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.DB;
+namespace BEARFLIX.Models.BD;
 
-[Index("Descripcion", Name = "UQ__Permiso__298336B66B7BA88C", IsUnique = true)]
-public partial class Permiso
+[Index("Descripcion", Name = "UQ__TipoTarj__298336B6FCC554AD", IsUnique = true)]
+public partial class TipoTarjeta
 {
     [Key]
     [Column("id")]
@@ -18,7 +18,6 @@ public partial class Permiso
     [Unicode(false)]
     public string Descripcion { get; set; } = null!;
 
-    [ForeignKey("IdPermiso")]
-    [InverseProperty("IdPermiso")]
-    public virtual ICollection<Rol> IdRol { get; set; } = new List<Rol>();
+    [InverseProperty("IdTipoNavigation")]
+    public virtual ICollection<Tarjeta> Tarjeta { get; set; } = new List<Tarjeta>();
 }

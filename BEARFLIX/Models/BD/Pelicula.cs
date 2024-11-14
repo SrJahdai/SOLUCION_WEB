@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.DB;
+namespace BEARFLIX.Models.BD;
 
-[Index("Titulo", Name = "UQ__Pelicula__38FA640FE0628EFC", IsUnique = true)]
+[Index("Titulo", Name = "UQ__Pelicula__38FA640F3196FD60", IsUnique = true)]
 [Index("Titulo", Name = "idx_pelicula_titulo")]
 public partial class Pelicula
 {
@@ -41,6 +41,9 @@ public partial class Pelicula
     [StringLength(255)]
     [Unicode(false)]
     public string TituloImagen { get; set; } = null!;
+
+    [Column("estreno")]
+    public DateOnly Estreno { get; set; }
 
     [Column("video")]
     [StringLength(255)]

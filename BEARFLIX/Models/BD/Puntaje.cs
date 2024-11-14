@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.DB;
+namespace BEARFLIX.Models.BD;
 
 [PrimaryKey("IdUsuario", "IdPelicula")]
 [Index("IdUsuario", "Puntaje1", Name = "idx_puntaje_usuario")]

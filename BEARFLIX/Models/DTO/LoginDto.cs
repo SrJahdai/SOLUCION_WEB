@@ -9,6 +9,7 @@ namespace BEARFLIX.Models.DTO
         public required string Contrasena { get; set; }
         public required bool Recuerdame { get; set; }
 
+
     }
 
 }

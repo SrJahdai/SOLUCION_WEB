@@ -1,5 +1,6 @@
 
-using BEARFLIX.Models.DB;
+using BEARFLIX.Filters;
+using BEARFLIX.Models.BD;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<CargarDatosUsuarioFilter>();
+});
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

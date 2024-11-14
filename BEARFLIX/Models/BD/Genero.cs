@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace BEARFLIX.Models.DB;
+namespace BEARFLIX.Models.BD;
 
-[Index("Descripcion", Name = "UQ__Genero__298336B6F420DDEC", IsUnique = true)]
+[Index("Descripcion", Name = "UQ__Genero__298336B6F1ABFD5C", IsUnique = true)]
 public partial class Genero
 {
     [Key]

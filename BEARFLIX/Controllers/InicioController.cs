@@ -1,5 +1,5 @@
 ﻿using BEARFLIX.Models;
-using BEARFLIX.Models.DB;  // Agregar para usar BearflixContext
+using BEARFLIX.Models.BD;  // Agregar para usar BearflixContext
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;  // Agregar para usar ClaimTypes
 
@@ -22,14 +22,21 @@ namespace BEARFLIX.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                // Obtener información del usuario o cualquier parámetro que quieras pasar
-                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                // Obtener el rol del usuario desde los claims
+                var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
 
-                // Redirigir a la acción Index del UsuarioController con el parámetro userId
-                return RedirectToAction("Index", "Usuario", new { id = userId });
+                if (userRole == "ADMINISTRADOR" || userRole == "DUENO")
+                {
+                    return RedirectToAction("Index", "Peliculas");
+                }
+                else if (userRole == "USUARIO")
+                {
+                    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    return RedirectToAction("Index", "Usuario", new { id = userId });
+                }
             }
 
-            // Si no está autenticado, cargar la vista normal de inicio
+            // Si no está autenticado o no tiene rol válido, cargar la vista normal
             return View();
         }
 

@@ -1,4 +1,4 @@
-﻿using BEARFLIX.Models.DB;
+﻿using BEARFLIX.Models.BD;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -24,7 +24,7 @@ namespace BEARFLIX.Controllers
 
                 if (usuario == null)
                 {
-                    await HttpContext.SignOutAsync(); // Esto elimina la cookie de autenticación
+                    await HttpContext.SignOutAsync(); 
                     return RedirectToAction("Index", "Inicio");
                 }
 
