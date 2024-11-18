@@ -67,34 +67,34 @@ namespace BEARFLIX.Controllers
         }
 
 
-        // Login de usuario
+        // Login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var user = await _context.Usuario
-                .Include(u => u.IdRol) // Asegúrate de incluir la colección de roles
+                .Include(u => u.IdRol) // Incluir los roles
                 .FirstOrDefaultAsync(u => u.Correo == loginDto.Correo);
 
             if (user == null || !VerifyPassword(loginDto.Contrasena, user.Contrasena))
             {
+                _logger.LogWarning($"Credenciales incorrectas para el correo {loginDto.Correo}.");
                 return Unauthorized("Correo o contraseña incorrectos.");
             }
 
-            // Verifica que el usuario tenga roles asignados
-            string rolDescripcion = user.IdRol.FirstOrDefault().Descripcion;
-
-            if (string.IsNullOrEmpty(rolDescripcion))
+            var rol = user.IdRol.FirstOrDefault()?.Descripcion;
+            if (string.IsNullOrEmpty(rol))
             {
-                return Unauthorized("El usuario no tiene un rol asignado.");
+                _logger.LogWarning($"El usuario {loginDto.Correo} no tiene un rol asignado.");
+                return Unauthorized("No tienes acceso al sistema.");
             }
 
             var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-        new Claim(ClaimTypes.Name, user.Nombre),
-        new Claim(ClaimTypes.Email, user.Correo),
-        new Claim(ClaimTypes.Role, rolDescripcion) // Aquí se asigna el rol
-    };
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Nombre),
+                new Claim(ClaimTypes.Email, user.Correo),
+                new Claim(ClaimTypes.Role, rol)
+            };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
@@ -106,9 +106,23 @@ namespace BEARFLIX.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity), authProperties);
 
-            return Ok(new { message = "Login exitoso" });
+            _logger.LogInformation($"Usuario {user.Nombre} ha iniciado sesión correctamente con el rol {rol}.");
+
+            string redirectUrl = GetRedirectUrlByRole(rol);
+            return new JsonResult(new { redirectUrl });
         }
 
+        private string GetRedirectUrlByRole(string rol)
+        {
+            return rol switch
+            {
+                "USUARIO" => Url.Action("Index", "Usuario"),
+                "TESTER" => Url.Action("Index", "Tester"),
+                "DUENO" => Url.Action("Index", "Peliculas"),
+                "ADMINISTRADOR" => Url.Action("Panel", "Administrador"),
+                _ => Url.Action("Index", "Inicio")
+            };
+        }
 
 
         // Logout de usuario

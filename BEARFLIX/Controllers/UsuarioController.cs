@@ -1,11 +1,14 @@
-﻿using BEARFLIX.Models.BD;
+﻿using BEARFLIX.Filters;
+using BEARFLIX.Models.BD;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BEARFLIX.Controllers
 {
+    [Authorize(Roles = "USUARIO, TESTER")]
     public class UsuarioController : Controller
     {
         private readonly BearflixContext _context;

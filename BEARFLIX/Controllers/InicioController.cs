@@ -36,7 +36,7 @@ namespace BEARFLIX.Controllers
                 }
             }
 
-            // Si no está autenticado o no tiene rol válido, cargar la vista normal
+            ViewData["Layout"] = "~/Views/Shared/_Layout.cshtml";
             return View();
         }
 

@@ -2,13 +2,13 @@
 using BEARFLIX.Filters;
 using BEARFLIX.Models.BD;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authorization;
 namespace BEARFLIX.Controllers
 {
 
     [ApiController]
     [Route("api/[controller]")]
-    [RoleAuthorize("USUARIO", "TESTER")]
+    [Authorize("USUARIO, TESTER")]
     public class PeliculaController : ControllerBase
     {
         private readonly BearflixContext _context;

@@ -35,18 +35,17 @@
             data: JSON.stringify(loginData),
             success: function (response) {
                 ocultarCarga();
-                window.location.href = '/Usuario/Index'; 
                 Swal.fire({
                     position: 'center',
                     iconHtml: '<i class="bi bi-person-check"></i>',
                     title: 'Sesión iniciada',
-                    text: 'Bienvenido, [Nombre del Usuario]',
-                    iconColor: 'green', 
+                    text: 'Bienvenido',
+                    iconColor: 'blue', 
                     toast: true, 
                     showConfirmButton: false, 
-                    timer: 3000 
+                    timer: 2000 
                 });
-                
+                window.location.href = response.redirectUrl; 
             },
             error: function (xhr, status, error) {
                 ocultarCarga();

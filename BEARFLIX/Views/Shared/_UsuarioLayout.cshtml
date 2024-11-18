@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="~/css/usuario.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BEARFLIX.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/iconos/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/lib/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
 </head>
 <body class="bg-dark">
     <header>
-        <nav id="barraNav" class="navbar bg-dark fixed-top text-light" data-bs-theme="dark">
+        <nav id="barraNav" class="z-3 navbar bg-dark fixed-top text-light" data-bs-theme="dark">
             <div class="container-fluid">
 
 
@@ -119,7 +120,7 @@
 
 
     <div>
-        <main role="main" class="container-fluid">
+        <main role="main" class="container-fluid z-1">
             @RenderBody()
         </main>
     </div>
@@ -131,6 +132,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
     <script src="~/js/usuario.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

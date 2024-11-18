@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BEARFLIX.Models.BD;
 using BEARFLIX.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BEARFLIX.Controllers
 {
 
-    [RoleAuthorize("DUENO", "ADMINISTRADOR")]
+    [Authorize(Roles = "ADMINISTRADOR, DUENO")]
     public class PeliculasController : Controller
     {
         private readonly BearflixContext _context;
@@ -24,6 +25,7 @@ namespace BEARFLIX.Controllers
         // GET: Peliculas
         public async Task<IActionResult> Index()
         {
+            ViewData["Layout"] = "~/Views/Shared/_logLayout.cshtml";
             var bearflixContext = _context.Pelicula.Include(p => p.IdProveedorNavigation);
             return View(await bearflixContext.ToListAsync());
         }
@@ -43,7 +45,7 @@ namespace BEARFLIX.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Layout"] = "~/Views/Shared/_logLayout.cshtml";
             return View(pelicula);
         }
 
@@ -51,6 +53,7 @@ namespace BEARFLIX.Controllers
         public IActionResult Create()
         {
             ViewData["IdProveedor"] = new SelectList(_context.Proveedor, "Id", "Id");
+            ViewData["Layout"] = "~/Views/Shared/_logLayout.cshtml";
             return View();
         }
 
@@ -68,6 +71,7 @@ namespace BEARFLIX.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdProveedor"] = new SelectList(_context.Proveedor, "Id", "Id", pelicula.IdProveedor);
+            ViewData["Layout"] = "~/Views/Shared/_logLayout.cshtml";
             return View(pelicula);
         }
 
@@ -85,6 +89,7 @@ namespace BEARFLIX.Controllers
                 return NotFound();
             }
             ViewData["IdProveedor"] = new SelectList(_context.Proveedor, "Id", "Id", pelicula.IdProveedor);
+            ViewData["Layout"] = "~/Views/Shared/_logLayout.cshtml";
             return View(pelicula);
         }
 
