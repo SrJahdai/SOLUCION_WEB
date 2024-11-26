@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Proveedores</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style-p10.css">   
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <button class="btn btn-secondary" onclick="window.location.href='index-P7.html'"><</button>  
+                <h4></h4>    
+                    <div class="card">
+                    <div class="card-header">
+                        <a href="#" class="btn btn-link"><i class="bi bi-arrow-left-circle-fill flecha-atras"></i></a>
+                        Nombre del Proveedor
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="nombreProveedor" placeholder="Ingrese el nombre del proveedor">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" class="form-control" id="porcentajeAPagar" placeholder="Ingrese el porcentaje a pagar">
+                        </div>
+                        <button type="button" class="btn btn-success" id="btnDarAlta">Dar de Alta</button>
+                        <button type="button" class="btn btn-primary" id="btnVerProveedores">Ver Proveedores Existentes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"></script>
+    <script src="script-p10.js"></script>
