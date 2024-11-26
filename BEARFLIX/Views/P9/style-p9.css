@@ -1,0 +1,11 @@
+/* Personaliza los estilos según tus preferencias */
+.table {
+    border: 1px solid #ccc;
+}
+.table th, .table td {
+    border-top: none;
+}
+
+.btn-group {
+    margin-right: 5px; /* Ajusta el margen según sea necesario */
+}
