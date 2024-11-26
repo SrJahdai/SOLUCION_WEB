@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Dueno\GestionUsuarios.cshtml" />
+    <Content Remove="Views\Dueno\Index.cshtml" />
+    <Content Remove="Views\P9\Puntaje.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
@@ -25,6 +31,12 @@
     <Folder Include="Cargas\" />
     <Folder Include="wwwroot\uploads\videos\" />
     <Folder Include="wwwroot\uploads\imagenes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Administrador\Puntaje.cshtml" />
+    <None Include="Views\Dueno\GestionUsuarios.cshtml" />
+    <None Include="Views\Dueno\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

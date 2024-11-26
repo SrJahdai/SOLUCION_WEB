@@ -1,0 +1,154 @@
+﻿@{
+    ViewData["Title"] = "Detalles";
+}
+
+<div class="text-light vh-100">
+    <img src="" alt="" id="fondo" style="width: 100%; position: absolute; z-index: -2; height: 100%; background: rgba(0, 0, 0, 0.8);">
+    <div class="contenido p-4">
+        <button class="volver px-2" onclick="window.history.back();">Volver</button>
+        <h1 class="px-2" id="titulo"></h1>
+        
+        <div class="stars px-2">
+            <span id="stars"></span>
+            <span id="current-rating"></span> (<span id="total-votos"></span> votos)
+        </div>
+
+        <p class="px-2" id="descripcion"></p>
+        <p class="px-2" id="duracion"></p>
+
+        <div class="row px-2">
+    <div class="col-12 col-lg-6 m-2">
+        <button class="btn-orange container" data-bs-toggle="modal" data-bs-target="#modalPago" data-accion="comprar">Comprar</button>         
+    </div>
+    <div class="col-12 col-lg-6 m-2">
+        <button class="btn-orange container" data-bs-toggle="modal" data-bs-target="#modalPago" data-accion="rentar">Rentar</button>
+    </div>
+</div>
+
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalPago" tabindex="-1" aria-labelledby="modalPagoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPagoLabel">Ventana de Pago</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <img src="Imagenes/ironmanhd.jpg" alt="Iron Man" class="img-fluid mb-3" style="max-height: 150px;">
+                </div>
+                <h3 class="text-center" id="peliculaTitulo"></h3>
+                <p>Precio de compra: <span id="precioCompra"></span></p>
+                <p>Precio de renta: <span id="precioRenta"></span></p>
+                <p>Total: $ <span id="total"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-orange" id="confirmarPago">Aceptar</button>
+                <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+       $(document).ready(function () {
+    var precioCompra, precioRenta, accionSeleccionada;
+    var peliculaId = parseInt(window.location.pathname.split('/').pop()); // Obtener ID de la película desde la URL
+
+    $.get(`/api/Escaparate/Detalles/${peliculaId}`, function (data) {
+        // Actualizar los elementos con la información de la película
+        $('#fondo').attr('src', data.fondo);
+        $('#titulo').text(data.titulo);
+        $('#descripcion').text(data.descripcion);
+        $('#duracion').text('Duración: ' + data.duracion);
+        $('#stars').html(generateStars(data.puntajePromedio));
+        $('#current-rating').text(data.puntajePromedio);
+        $('#total-votos').text(data.totalPuntajes);
+        precioCompra = data.precioCompra;
+        precioRenta = data.precioRenta;
+    });
+
+    $(document).on('click', '[data-bs-target="#modalPago"]', function () {
+        accionSeleccionada = $(this).data('accion'); // Obtener si es "comprar" o "rentar"
+        $('#peliculaTitulo').text($('#titulo').text()); // Usar el título de la película cargado previamente
+    
+        if (accionSeleccionada === 'comprar') {
+            $('#precioCompra').text(precioCompra);
+            $('#precioRenta').text('');
+            $('#total').text(precioCompra);
+        } else if (accionSeleccionada === 'rentar') {
+            $('#precioRenta').text(precioRenta);
+            $('#precioCompra').text('');
+            $('#total').text(precioRenta);
+        }
+    });
+
+    $('#confirmarPago').on('click', function () {
+        var tipoVentaId = accionSeleccionada === 'comprar' ? 1 : 2; // 1 para compra, 2 para renta
+        var monto = accionSeleccionada === 'comprar' ? precioCompra : precioRenta;
+
+        $.ajax({
+            url: '/api/Escaparate/RealizarPago',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                IdUsuario: usuarioId,  // Asegúrate de que `usuarioId` esté definido
+                IdPelicula: peliculaId,
+                Monto: monto,
+                IdTipo: tipoVentaId
+            }),
+            success: function (response) {
+                alert(response.mensaje); // Mensaje de éxito o error
+                $('#modalPago').modal('hide'); // Cerrar el modal
+            },
+            error: function (error) {
+                alert('Error al realizar la compra/renta');
+            }
+        });
+    });
+
+    function generateStars(rating) {
+        var starsHtml = '';
+        for (var i = 1; i <= 5; i++) {
+            starsHtml += `<span class="star" data-rating="${i}">☆</span>`;
+        }
+        return starsHtml;
+    }
+
+    $(document).on('click', '.star', function () {
+        var rating = $(this).data('rating');
+        saveRating(rating);
+        updateStars(rating);
+    });
+
+    function updateStars(rating) {
+        $('.star').each(function () {
+            if ($(this).data('rating') <= rating) {
+                $(this).text('★');
+            } else {
+                $(this).text('☆');
+            }
+        });
+    }
+
+    function saveRating(rating) {
+        $.ajax({
+            url: '/api/Escaparate/GuardarPuntaje',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ IdPelicula: peliculaId, Puntaje: rating }),
+            success: function (response) {
+                alert(response.mensaje);
+            },
+            error: function (error) {
+                alert(error.mensaje);
+            }
+        });
+    }
+});
+
+    </script>
+}

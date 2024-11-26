@@ -1,6 +1,7 @@
 
 using BEARFLIX.Filters;
 using BEARFLIX.Models.BD;
+using BEARFLIX.Models.DTO;
 using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http.Features;
@@ -40,6 +41,12 @@ var cloudinary = new Cloudinary(new Account(
 builder.Services.AddSingleton(cloudinary);
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<BearflixContext>();
+    DbInitializer.Initialize(context); // Llamar al método de inicialización
+}
 
 app.UseAuthentication();
 app.UseAuthorization();

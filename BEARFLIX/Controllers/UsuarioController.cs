@@ -18,6 +18,14 @@ namespace BEARFLIX.Controllers
             _context = context;
         }
 
+
+        public IActionResult Detalles()
+        {
+
+            ViewData["Layout"] = "~/Views/Shared/_UsuarioLayout.cshtml";
+            return View();
+        }
+
         public async Task<IActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -30,7 +38,7 @@ namespace BEARFLIX.Controllers
                     await HttpContext.SignOutAsync(); 
                     return RedirectToAction("Index", "Inicio");
                 }
-
+                ViewData["Layout"] = "~/Views/Shared/_UsuarioLayout.cshtml";
                 return View("Index", usuario);
             }
 
@@ -49,7 +57,7 @@ namespace BEARFLIX.Controllers
                     await HttpContext.SignOutAsync();
                     return RedirectToAction("Index", "Inicio");
                 }
-
+                ViewData["Layout"] = "~/Views/Shared/_UsuarioLayout.cshtml";
                 return View("Index", usuario);
             }
 

@@ -1,0 +1,88 @@
+@{
+    ViewData["Title"] = "Gestión de Usuarios";
+    var roles = ViewData["Roles"] as List<BEARFLIX.Models.BD.Rol>
+    ;
+    }
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Gestión de Usuarios</h2>
+
+        <!-- Mensajes de éxito o error -->
+        @if (TempData["Error"] != null)
+        {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+        @if (TempData["Success"] != null)
+        {
+        <div class="alert alert-success">@TempData["Success"]</div>
+        }
+
+        <!-- Formulario de registro -->
+        <form asp-action="RegistrarUsuario" method="post" class="card p-4" style="max-width: 500px; margin: 0 auto;">
+            <h4 class="mb-4">Registrar Nuevo Usuario</h4>
+            <div class="mb-3">
+                <label for="Nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Ingrese el nombre" required />
+            </div>
+            <div class="mb-3">
+                <label for="Correo" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="Correo" name="Correo" placeholder="Ingrese el correo" required />
+            </div>
+            <div class="mb-3">
+                <label for="Contrasena" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="Contrasena" name="Contrasena" placeholder="Ingrese la contraseña" required />
+            </div>
+            <div class="mb-3">
+                <label for="FechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" required />
+            </div>
+            <div class="mb-3">
+                <label for="IdRol" class="form-label">Rol</label>
+                <select class="form-select" id="IdRol" name="idRol" required>
+                    <option value="" disabled selected>Seleccione un rol</option>
+                    @foreach (var rol in roles)
+                    {
+                    <option value="@rol.Id">@rol.Descripcion</option>
+                    }
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success btn-lg">Registrar Usuario</button>
+            </div>
+        </form>
+
+        <!-- Listado de usuarios -->
+        <div class="mt-5">
+            <h4 class="mb-4">Usuarios Registrados</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Fecha de Nacimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.Usuarios != null)
+                    {
+                    foreach (var usuario in ViewBag.Usuarios)
+                    {
+                    <tr>
+                        <td>@usuario.Nombre</td>
+                        <td>@usuario.Correo</td>
+                        <td>@usuario.Rol</td>
+                        <td>@usuario.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                    }
+                    }
+                    else
+                    {
+                    <tr>
+                        <td colspan="4" class="text-center">No hay usuarios registrados.</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

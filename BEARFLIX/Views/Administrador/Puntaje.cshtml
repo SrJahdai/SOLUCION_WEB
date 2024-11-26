@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Puntaje";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <a class="btn btn-secondary" asp-action="Index"><</a>
+            <h2>Listado de Películas</h2>
+        </div>
+        <div class="col-2 text-end">
+            <div class="btn-group">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filtrar
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#" data-filter="genero">Por Género</a></li>
+                    <li><a class="dropdown-item" href="#" data-filter="proveedor">Por Proveedor</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Ordenar
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#" data-order="asc">A-Z</a></li>
+                    <li><a class="dropdown-item" href="#" data-order="desc">Z-A</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre de la Película</th>
+                <th class="text-center">Promedio de Estrellas</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-peliculas"></tbody>
+    </table>
+</div>
+

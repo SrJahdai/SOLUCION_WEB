@@ -15,6 +15,8 @@
         public decimal PrecioRenta { get; set; }
         public double PuntajePromedio { get; set; }
         public int TotalPuntajes { get; set; }
+        public bool MostrarBotones { get; set; }
+        public string TituloImagen { get; set; }
     }
 
 }

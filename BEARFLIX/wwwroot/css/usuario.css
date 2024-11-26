@@ -2,6 +2,69 @@
     border-color: rgba(var(--bs-warning-rgb), .25) !important;
 }
 
+.card-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-list .card-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+
+    .card-list .card-item .details {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .card-list .card-item .details .card-number {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .card-list .card-item .details .card-expiry {
+            font-size: 0.9rem;
+            color: gray;
+        }
+
+.card-list .btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-edit {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+    .btn-edit:hover {
+        background-color: #0056b3;
+    }
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+    .btn-delete:hover {
+        background-color: #a71d2a;
+    }
+
 .btn-orange {
     background-color: #FF9201 !important;
     color: white !important;
@@ -159,11 +222,15 @@ html {
     }
 }
 
+img{
+    height: 100%;
+    z-index: 0;
+}
 
 /* Escaparate */
 .escaparate h2 {
     font-size: 24px;
-    margin: 20px;
+
     z-index: 2;
     position: absolute;
     bottom: 20px;
@@ -177,10 +244,10 @@ html {
 /* Párrafo (p) que se muestra al hacer hover */
 .escaparate p {
     opacity: 0;
-    margin: 20px;
+  margin-left: 20px;
     transform: translateY(30px); /* Desplazamiento inicial */
     transition: opacity 0.3s ease, transform 0.5s ease;
-    z-index: 1;
+    z-index: 2;
     position: relative;
     font-size: 14px;
     line-height: 1.4;
@@ -214,7 +281,7 @@ html {
     justify-self: center;
     width: 430px;
     height: 230px;
-    background-color: rgb(146, 146, 146);
+    
     border-radius: 10px;
     color: rgba(255, 255, 255, 0);
     opacity: 0.7;
@@ -322,3 +389,101 @@ html {
         .owl-dots .owl-dot.active {
             background: #FF9201 !important;
         }
+
+
+.contenido {
+    position: relative; /* Necesario para el pseudoelemento */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 100%; /* Ocupa el 80% de la altura de la pantalla */
+    background: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+    border-radius: 10px;
+    z-index: 1; /* Asegura que el contenido esté encima del pseudoelemento */
+}
+
+    .contenido::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        min-height: 100%;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0)); /* Sombra degradada */
+        /* Igual al del contenedor */
+        z-index: -1; /* Coloca detrás del contenido */ /* Añade un ligero efecto de sombra */
+    }
+
+
+.stars {
+    color: #FF9201;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.volver {
+    max-width: 100px;
+    background-color: #FF9201;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+    .volver:hover {
+        background-color: #ff9f22;
+    }
+
+
+
+
+.precio {
+    color: #FF9201;
+    font-size: 1.2rem;
+}
+
+.btn-orange {
+    background-color: #FF9201;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-orange:hover {
+        background-color: #ff9f22;
+    }
+
+.modal-content {
+    background-color: #333333;
+    color: white;
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #444;
+}
+
+.modal-footer {
+    border-top: 1px solid #444;
+}
+
+.btn-cancel {
+    background-color: #666;
+    color: white;
+    border: none;
+}
+
+    .btn-cancel:hover {
+        background-color: #888;
+    }
+
+
+

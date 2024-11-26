@@ -8,6 +8,7 @@
         public DateOnly Estreno { get; set; }
         public string Portada { get; set; }
         public List<string> Generos { get; set; }
+        public byte? PuntajeUsuario { get; set; }
     }
 
 }

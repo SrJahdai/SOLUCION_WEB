@@ -14,6 +14,13 @@ namespace BEARFLIX.Controllers
             _context = context;
         }
 
+        public IActionResult Puntaje()
+        {
+          
+            ViewData["Layout"] = "~/Views/Shared/AdminLayout.cshtml";
+            return View();
+        }
+
         // Acción para mostrar la lista de proveedores
         public IActionResult Proveedores()
         {
