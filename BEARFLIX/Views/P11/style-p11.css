@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  #back-button {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+  }
+  
+  #back-button:hover {
+    background-color: #5a6268;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .table th,
+  .table td {
+    vertical-align: middle;
+  }
+  
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .action-btn.edit-btn {
+    background-color: #28a745; /* Verde para editar */
+  }
+  
+  .action-btn.edit-btn:hover {
+    background-color: #218838;
+  }
+  
+  .action-btn.delete-btn {
+    background-color: #dc3545; /* Rojo para borrar */
+  }
+  
+  .action-btn.delete-btn:hover {
+    background-color: #c82333;
+  }
+  
