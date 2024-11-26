@@ -8,7 +8,7 @@ namespace BEARFLIX.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize("USUARIO, TESTER")]
+    [Authorize(Roles = "USUARIO, TESTER")]
     public class EscaparateController : ControllerBase
     {
         private readonly BearflixContext _context;
@@ -18,11 +18,73 @@ namespace BEARFLIX.Controllers
             _context = context;
         }
 
-        // Obtener todas las películas
+        [HttpGet("escaparateindex")]
+        public async Task<IActionResult> GetPeliculasEscaparate()
+        {
+            var estrenos = await _context.Pelicula
+                .Include(p => p.IdGenero.Where(g => g != null)) // Evitar géneros nulos
+                .Where(p => p.Estreno > DateOnly.FromDateTime(DateTime.Now.AddMonths(-3)))
+                .Select(p => new PeliculaDto
+                {
+                    Id = p.Id,
+                    Titulo = p.Titulo,
+                    Descripcion = p.Descripcion,
+                    Estreno = p.Estreno,
+                    Portada = p.Portada,
+                    Generos = p.IdGenero.Where(g => g != null).Select(g => g.Descripcion).ToList()
+                })
+                .Take(15)
+                .ToListAsync();
+
+            var recientes = await _context.Pelicula
+                .Include(p => p.IdGenero.Where(g => g != null))
+                .OrderByDescending(p => p.Estreno)
+                .Select(p => new PeliculaDto
+                {
+                    Id = p.Id,
+                    Titulo = p.Titulo,
+                    Descripcion = p.Descripcion,
+                    Estreno = p.Estreno,
+                    Portada = p.Portada,
+                    Generos = p.IdGenero.Where(g => g != null).Select(g => g.Descripcion).ToList()
+                })
+                .Take(15)
+                .ToListAsync();
+
+            var peliculasPorGenero = await _context.Genero
+                .Where(g => g.IdPelicula.Any()) // Ignorar géneros sin películas
+                .Select(g => new
+                {
+                    Genero = g.Descripcion,
+                    Peliculas = g.IdPelicula
+                        .Where(p => p.IdGenero.Any(gen => gen != null))
+                        .Select(p => new PeliculaDto
+                        {
+                            Id = p.Id,
+                            Titulo = p.Titulo,
+                            Descripcion = p.Descripcion,
+                            Estreno = p.Estreno,
+                            Portada = p.Portada,
+                            Generos = p.IdGenero.Where(gen => gen != null).Select(gen => gen.Descripcion).ToList()
+                        })
+                        .Take(15)
+                        .ToList()
+                })
+                .ToListAsync();
+
+            return Ok(new
+            {
+                estrenos,
+                recientes,
+                peliculasPorGenero
+            });
+        }
+
         [HttpGet("todas")]
         public async Task<IActionResult> GetTodasPeliculas()
         {
             var peliculas = await _context.Pelicula
+                .Include(p => p.IdGenero.Where(g => g != null))
                 .Select(p => new PeliculaDto
                 {
                     Id = p.Id,
@@ -30,39 +92,25 @@ namespace BEARFLIX.Controllers
                     Estreno = p.Estreno,
                     Descripcion = p.Descripcion,
                     Portada = p.Portada,
-                    Generos = p.IdGenero.Select(g => g.Descripcion).ToList()
+                    Generos = p.IdGenero.Where(g => g != null).Select(g => g.Descripcion).ToList()
                 })
                 .ToListAsync();
 
             return Ok(peliculas);
         }
 
-        // Obtener las 5 películas más recientes por fecha de estreno
         [HttpGet("estrenos")]
         public async Task<IActionResult> GetEstrenos()
         {
-            var peliculas = await _context.Pelicula
-                .OrderByDescending(p => p.Estreno)
-                .Take(5)
-                .Select(p => new PeliculaDto
-                {
-                    Id = p.Id,
-                    Titulo = p.Titulo,
-                    Estreno = p.Estreno,
-                    Descripcion = p.Descripcion,
-                    Portada = p.Portada,
-                    Generos = p.IdGenero.Select(g => g.Descripcion).ToList()
-                })
-                .ToListAsync();
-
+            var peliculas = await ObtenerPeliculasPorFecha("estreno", 5);
             return Ok(peliculas);
         }
 
-        // Obtener todos los géneros
         [HttpGet("generos")]
         public async Task<IActionResult> GetGeneros()
         {
             var generos = await _context.Genero
+                .Where(g => g.IdPelicula.Any()) // Ignorar géneros sin películas
                 .Select(g => new GeneroDto
                 {
                     Id = g.Id,
@@ -73,37 +121,10 @@ namespace BEARFLIX.Controllers
             return Ok(generos);
         }
 
-        // Obtener 15 películas según los géneros
-        [HttpGet("peliculas-por-genero")]
-        public async Task<IActionResult> GetPeliculasPorGenero()
+        private async Task<List<PeliculaDto>> ObtenerPeliculasPorFecha(string fechaPropiedad, int limite)
         {
-            var peliculasPorGenero = await _context.Pelicula
-                .Include(p => p.IdGenero)
-                .SelectMany(p => p.IdGenero, (pelicula, genero) => new { pelicula, genero })
-                .GroupBy(pg => pg.genero.Id)
-                .SelectMany(g => g.Take(3)) // Tomar hasta 3 películas por género
-                .Take(15) // Limitar a 15 películas
-                .Select(pg => new PeliculaDto
-                {
-                    Id = pg.pelicula.Id,
-                    Titulo = pg.pelicula.Titulo,
-                    Estreno = pg.pelicula.Estreno,
-                    Descripcion = pg.pelicula.Descripcion,
-                    Portada = pg.pelicula.Portada,
-                    Generos = pg.pelicula.IdGenero.Select(g => g.Descripcion).ToList()
-                })
-                .ToListAsync();
-
-            return Ok(peliculasPorGenero);
-        }
-
-        // Obtener las 15 películas más recientes por fecha de registro
-        [HttpGet("recientes")]
-        public async Task<IActionResult> GetPeliculasMasRecientes()
-        {
-            var peliculas = await _context.Pelicula
-                .OrderByDescending(p => EF.Property<DateTime>(p, "FechaRegistro")) // Cambia "FechaRegistro" por el nombre correcto del campo
-                .Take(15)
+            return await _context.Pelicula
+                .OrderByDescending(p => EF.Property<DateTime>(p, fechaPropiedad))
                 .Select(p => new PeliculaDto
                 {
                     Id = p.Id,
@@ -111,42 +132,17 @@ namespace BEARFLIX.Controllers
                     Estreno = p.Estreno,
                     Descripcion = p.Descripcion,
                     Portada = p.Portada,
-                    Generos = p.IdGenero.Select(g => g.Descripcion).ToList()
+                    Generos = p.IdGenero.Where(g => g != null).Select(g => g.Descripcion).ToList()
                 })
+                .Take(limite)
                 .ToListAsync();
-
-            return Ok(peliculas);
         }
-
-        [HttpGet("{genero}/peliculas")]
-        public async Task<IActionResult> GetPeliculasPorGenero(string genero)
-        {
-            var peliculas = await _context.Pelicula
-                .Include(p => p.IdGenero)
-                .Where(p => p.IdGenero.Any(g => g.Descripcion.ToLower() == genero.ToLower()))
-                .Select(p => new
-                {
-                    p.Id,
-                    p.Titulo,
-                    p.Portada,
-                    Estreno = p.Estreno.ToString("yyyy-MM-dd")
-                })
-                .ToListAsync();
-
-            if (!peliculas.Any())
-            {
-                return NotFound(new { mensaje = $"No se encontraron películas para el género '{genero}'." });
-            }
-
-            return Ok(peliculas);
-        }
-
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPeliculaDetalles(int id)
         {
             var pelicula = await _context.Pelicula
-                .Include(p => p.IdGenero)
+                .Include(p => p.IdGenero.Where(g => g != null))
                 .Include(p => p.Puntaje)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
@@ -178,6 +174,5 @@ namespace BEARFLIX.Controllers
 
             return Ok(respuesta);
         }
-
     }
 }

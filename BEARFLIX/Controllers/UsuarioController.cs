@@ -36,5 +36,24 @@ namespace BEARFLIX.Controllers
 
             return RedirectToAction("Index", "Inicio");
         }
+
+        public async Task<IActionResult> Personal()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var usuario = _context.Usuario.FirstOrDefault(u => u.Id.ToString() == userId);
+
+                if (usuario == null)
+                {
+                    await HttpContext.SignOutAsync();
+                    return RedirectToAction("Index", "Inicio");
+                }
+
+                return View("Index", usuario);
+            }
+
+            return RedirectToAction("Index", "Inicio");
+        }
     }
 }

@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<div class="container text-dark">
+    <h2 class="text-dark mb-3 mx-3">Registrar pelicula</h2>
+    <form id="formRegistrarPelicula" action="api/admin/registrar" method="POST" enctype="multipart/form-data" class="container-fluid">
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-image fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="imgPrincipal" name="ImagenPrincipal" class="form-control focus-ring focus-ring-warning" type="file" required />
+                <label for="imgPrincipal" class="form-label">Imagen Principal</label>
+                <span id="img-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-image-fill fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="imgFondo" name="ImagenFondo" class="form-control focus-ring focus-ring-warning" type="file" required />
+                <label for="imgFondo" class="form-label">Fondo de Visualización</label>
+                <span id="img-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-filetype-png fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="imgTitulo" name="ImagenTitulo" class="form-control focus-ring focus-ring-warning" type="file" required />
+                <label for="imgTitulo" class="form-label">Imagen de Título</label>
+                <span id="img-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-file-font fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="titulo" name="Titulo" class="form-control focus-ring-warning" type="text" required />
+                <label for="titulo" class="form-label">Título</label>
+                <span id="titulo-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-justify-left fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="descripcion" name="Descripcion" class="form-control focus-ring focus-ring-warning" type="text" required />
+                <label for="descripcion" class="form-label">Sinópsis</label>
+                <span id="descripcion-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-film fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="video" name="VideoArchivo" class="form-control focus-ring focus-ring-warning" type="file" required />
+                <label for="video" class="form-label">Archivo de Película</label>
+                <span id="video-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-currency-dollar fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="precioCompra" name="PrecioCompra" class="form-control focus-ring focus-ring-warning" type="number" required />
+                <label for="precioCompra" class="form-label">Precio de Compra</label>
+                <span id="precio-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-currency-dollar fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="precioRenta" name="PrecioRenta" class="form-control focus-ring focus-ring-warning" type="number" required />
+                <label for="precioRenta" class="form-label">Precio de Renta</label>
+                <span id="precio-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-calendar fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="estreno" name="Estreno" class="form-control focus-ring focus-ring-warning" type="date" required />
+                <label for="estreno" class="form-label">Fecha de Estreno</label>
+                <span id="estreno-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="bi bi-hourglass-split fs-3"></i>
+            </span>
+            <span class="form-floating">
+                <input id="duracion" name="Duracion" class="form-control focus-ring focus-ring-warning" type="number" required />
+                <label for="duracion" class="form-label">Duración (minutos)</label>
+                <span id="duracion-error" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="input-group mb-2">
+            <label for="proveedor" class="form-label mx-4">Proveedor</label>
+            <select id="proveedor" name="IdProveedor" class="form-control focus-ring focus-ring-warning">
+                <!-- Aquí se cargarán los proveedores dinámicamente -->
+            </select>
+        </div>
+
+        <!-- Campo Género -->
+        <div class="input-group mb-2">
+            <label for="generos" class="form-label me-4">Género</label>
+            <select id="generos" name="IdGeneros" class="form-control focus-ring focus-ring-warning" multiple>
+                <!-- Aquí se cargarán los géneros dinámicamente -->
+            </select>
+        </div>
+
+        <div class="row my-4">
+            <div class="col-12 col-lg-6">
+                <button type="submit" class="btn btn-primary container">Aceptar</button>
+            </div>
+            <div class="col-12 col-lg-6">
+                <button type="button" class="btn btn-danger container" id="cancelar" asp-controller="Administrador" asp-action="Index">Cancelar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/adminCrear.js"></script>
+
+}
+

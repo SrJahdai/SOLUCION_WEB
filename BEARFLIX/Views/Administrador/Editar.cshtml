@@ -1,0 +1,66 @@
+﻿@model BEARFLIX.Models.DTO.PeliculaEdicionDto
+
+@{
+    ViewData["Title"] = "Editar Película";
+}
+
+<h2>Editar Película</h2>
+
+<div class="container">
+    <form id="editarPeliculaForm">
+        <div class="mb-3">
+            <label for="Titulo" class="form-label">Título</label>
+            <input type="text" class="form-control" id="Titulo" name="Titulo" value="@Model.Titulo" />
+        </div>
+
+        <div class="mb-3">
+            <label for="Descripcion" class="form-label">Descripción</label>
+            <textarea class="form-control" id="Descripcion" name="Descripcion">@Model.Descripcion</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="Duracion" class="form-label">Duración (min)</label>
+            <input type="number" class="form-control" id="Duracion" name="Duracion" value="@Model.Duracion" />
+        </div>
+
+        <div class="mb-3">
+            <label for="PrecioCompra" class="form-label">Precio de Compra</label>
+            <input type="number" step="0.01" class="form-control" id="PrecioCompra" name="PrecioCompra" value="@Model.PrecioCompra" />
+        </div>
+
+        <div class="mb-3">
+            <label for="PrecioRenta" class="form-label">Precio de Renta</label>
+            <input type="number" step="0.01" class="form-control" id="PrecioRenta" name="PrecioRenta" value="@Model.PrecioRenta" />
+        </div>
+
+        <div class="mb-3">
+            <label for="IdProveedor" class="form-label">Proveedor</label>
+            <select class="form-control" id="IdProveedor" name="IdProveedor">
+                <option value="">Seleccione un proveedor</option>
+                @foreach (var proveedor in ViewBag.Proveedores as List<BEARFLIX.Models.BD.Proveedor>)
+                {
+                    <option value="@proveedor.Id">@proveedor.Descripcion</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="IdGeneros" class="form-label">Géneros</label>
+            <select multiple class="form-control" id="IdGeneros" name="IdGeneros">
+                @foreach (var genero in ViewBag.Generos as List<BEARFLIX.Models.BD.Genero>)
+                {
+                    <option value="@genero.Id">@genero.Descripcion</option>
+                }
+            </select>
+        </div>
+
+        <button class="btn btn-primary guardar-cambios" data-id="@Model.Id">Guardar Cambios</button>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/adminEditar.js"></script>
+}
+
+

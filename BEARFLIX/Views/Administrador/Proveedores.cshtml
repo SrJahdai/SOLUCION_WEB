@@ -1,0 +1,32 @@
+﻿@model IEnumerable<BEARFLIX.Models.BD.Proveedor>
+
+
+@{
+    ViewData["Title"] = "Proveedores";
+}
+<h1>Administrar Proveedores</h1>
+<div class="container">
+    <form asp-action="CrearProveedor" method="post" class="mb-3">
+        <div class="form-group">
+            <label for="Descripcion">Nuevo Proveedor</label>
+            <input type="text" name="Descripcion" id="Descripcion" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-success">Añadir Proveedor</button>
+    </form>
+
+    <ul class="list-group">
+        @foreach (var proveedor in Model)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>@proveedor.Descripcion</span>
+                <a class="btn btn-danger" asp-action="EliminarProveedor" asp-route-id="@proveedor.Id">Eliminar</a>
+            </li>
+        }
+    </ul>
+    <div class="row my-4">
+
+        <div class="col-12">
+            <button type="button" class="btn btn-danger container" id="cancelar" asp-controller="Administrador" asp-action="Index">Cancelar</button>
+        </div>
+    </div>
+</div>

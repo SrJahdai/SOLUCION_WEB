@@ -1,7 +1,9 @@
 
 using BEARFLIX.Filters;
 using BEARFLIX.Models.BD;
+using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,11 +22,22 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 
+
+
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.Add<CargarDatosUsuarioFilter>();
 });
 builder.Services.AddRazorPages();
+var cloudinaryConfig = builder.Configuration.GetSection("Cloudinary");
+
+var cloudinary = new Cloudinary(new Account(
+    cloudinaryConfig["CloudName"],
+    cloudinaryConfig["ApiKey"],
+    cloudinaryConfig["ApiSecret"]
+    ));
+
+builder.Services.AddSingleton(cloudinary);
 
 var app = builder.Build();
 

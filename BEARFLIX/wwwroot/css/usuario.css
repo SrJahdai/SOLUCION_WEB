@@ -119,7 +119,7 @@ html {
     height: 160px;
     margin-right: 20px;
     background-color: #ccc;
-    padding: 20px;
+    
     text-align: center;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -163,7 +163,7 @@ html {
 /* Escaparate */
 .escaparate h2 {
     font-size: 24px;
-    margin: 0;
+    margin: 20px;
     z-index: 2;
     position: absolute;
     bottom: 20px;
@@ -177,6 +177,7 @@ html {
 /* Párrafo (p) que se muestra al hacer hover */
 .escaparate p {
     opacity: 0;
+    margin: 20px;
     transform: translateY(30px); /* Desplazamiento inicial */
     transition: opacity 0.3s ease, transform 0.5s ease;
     z-index: 1;
@@ -209,7 +210,7 @@ html {
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
-    padding: 20px;
+
     justify-self: center;
     width: 430px;
     height: 230px;

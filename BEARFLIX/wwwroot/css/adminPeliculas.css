@@ -30,6 +30,11 @@ main {
     height: 100px;
 }
 
+#Logo {
+    max-width: 60px;
+    height: auto;
+}
+
 .linea {
     height: 1px;
     background-color: #616161;

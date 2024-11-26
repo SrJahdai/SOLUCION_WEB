@@ -25,10 +25,15 @@ namespace BEARFLIX.Controllers
                 // Obtener el rol del usuario desde los claims
                 var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
 
-                if (userRole == "ADMINISTRADOR" || userRole == "DUENO")
+                if (userRole == "ADMINISTRADOR")
                 {
-                    return RedirectToAction("Index", "Peliculas");
+                    return RedirectToAction("Index", "Administrador");
                 }
+                else if(userRole == "DUENO")
+                {
+                    return RedirectToAction("Index", "Administrador");
+                }
+
                 else if (userRole == "USUARIO")
                 {
                     var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

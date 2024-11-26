@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BEARFLIX.Models.BD.Pelicula>
+
+@{
+    ViewData["Title"] = "Administración";
+}
+
+<h1>Bienvenido, @ViewData["NombreUsuario"]</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2 col-lg-6 m-1 m-lg-0">
+            <button type="button" class="btn btn-warning p-3 m-2">Reseñas</button>
+        </div>
+        <div class="col-10 col-lg-6 m-1 m-lg-0 d-flex justify-content-end">
+            <a type="button" class="btn btn-primary p-1 m-2" asp-action="Proveedores">Administrar Proveedores</a>
+            <a type="button" class="btn btn-primary p-2 m-2" asp-action="Generos">Administrar Géneros</a>
+            <a type="button" class="btn btn-info p-3 m-2" asp-action="Crear">Añadir Película</a>
+        </div>
+    </div>
+
+    <div id="contenedorPeliculasAdmin" class="container-fluid">
+        @if (Model != null && Model.Any())
+        {
+            <ul class="list-group">
+                @foreach (var pelicula in Model)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="h5 mb-0">@pelicula.Titulo</div>
+                        <div class="d-flex">
+                            <a type="button" class="btn btn-secondary mx-3" asp-action="Editar" asp-route-id="@pelicula.Id">Editar</a>
+                            <a type="button" class="btn btn-danger mx-3" asp-action="Eliminar" asp-route-id="@pelicula.Id">Eliminar</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No hay películas registradas.</p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/adminIndex.js"></script>
+}

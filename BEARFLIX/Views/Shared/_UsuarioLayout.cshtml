@@ -29,7 +29,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="mx-3 d-none d-md-flex ms-auto">
+                <a class="mx-3 d-none d-md-flex ms-auto btn border-0" asp-controller="Usuario" asp-action="Personal">
                     <div id="nombreUsuario" class="font-monospace mt-2 me-2">@ViewData["NombreUsuario"]</div>
                     <span class="vr mx-2"></span>
                         @{
@@ -44,7 +44,7 @@
                             }
                         }
                     
-                </div>
+                </a>
 
                 <div class="offcanvas offcanvas-start px-2" tabindex="-1" id="offcanvasNavbar"
                      aria-labelledby="offcanvasNavbarLabel">
@@ -91,25 +91,12 @@
                         </div>
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active" aria-current="page" asp-controller="Usuario" asp-action="Personal">MiPerfil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
+                                <a class="nav-link active" href="#">Link</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
+                           
                         </ul>
 
                     </div>
@@ -126,7 +113,9 @@
     </div>
 
 
-
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader"></div>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
