@@ -118,7 +118,7 @@ namespace BEARFLIX.Controllers
             {
                 "USUARIO" => Url.Action("Index", "Usuario"),
                 "TESTER" => Url.Action("Index", "Tester"),
-                "DUENO" => Url.Action("Index", "Administrador"),
+                "DUENO" => Url.Action("Index", "Duenos"),
                 "ADMINISTRADOR" => Url.Action("Index", "Administrador"),
                 _ => Url.Action("Index", "Inicio")
             };

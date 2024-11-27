@@ -31,7 +31,7 @@ namespace BEARFLIX.Controllers
                 }
                 else if(userRole == "DUENO")
                 {
-                    return RedirectToAction("Index", "Administrador");
+                    return RedirectToAction("Index", "Duenos");
                 }
 
                 else if (userRole == "USUARIO")

@@ -9,7 +9,7 @@ using System.Linq;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = "ADMINISTRADOR, DUENO")]
+[Authorize(Roles = "ADMINISTRADOR, TESTER")]
 public class AdminController : ControllerBase
 {
     private readonly Cloudinary _cloudinary;

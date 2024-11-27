@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Fondo claro */
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border-radius: 8px; /* Bordes redondeados */
+  }
+  
+  form label {
+    font-weight: bold;
+  }
+  
+  button {
+    font-weight: bold;
+  }
+  
+  #add-user {
+    width: 48%; /* Botones con el mismo ancho */
+  }
+  
+  #remove-user {
+    width: 48%;
+  }
+  
+  #back-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

@@ -7,22 +7,22 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace BEARFLIX.Controllers
 {
-    public class DuenoController : Controller
+    public class DuenosController : Controller
     {
         private readonly BearflixContext _context;
 
-        public DuenoController(BearflixContext context)
+        public DuenosController(BearflixContext context)
         {
             _context = context;
         }
 
-        // Vista principal de Dueño
         public IActionResult Index()
         {
-            return View();
+            ViewData["Layout"] = "~/Views/Shared/DuenoLayout.cshtml";
+            return View(); // Asegúrate de que renderiza específicamente Index.cshtml
         }
 
-        public async Task<IActionResult> GestionUsuario()
+        public async Task<IActionResult> GestionUsuarios()
         {
             var roles = await _context.Rol.ToListAsync();
             var usuarios = await _context.Usuario
@@ -38,7 +38,7 @@ namespace BEARFLIX.Controllers
 
             ViewData["Roles"] = roles;
             ViewBag.Usuarios = usuarios;
-
+            ViewData["Layout"] = "~/Views/Shared/DuenoLayout.cshtml";
             return View();
         }
 

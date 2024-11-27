@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Fondo claro */
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  button {
+    width: 300px; /* Ancho uniforme para todos los botones */
+    height: 70px; /* Altura uniforme */
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px; /* Bordes redondeados */
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    filter: brightness(1.1); /* Efecto al pasar el ratón */
+  }
+  
+  #users-btn {
+    background-color: #007bff; /* Azul Bootstrap */
+    color: white;
+  }
+  
+  #users-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  #sales-btn {
+    background-color: #28a745; /* Verde Bootstrap */
+    color: white;
+  }
+  
+  #sales-btn:hover {
+    background-color: #218838;
+  }
+  
+  #staff-btn {
+    background-color: #dc3545; /* Rojo Bootstrap */
+    color: white;
+  }
+  
+  #staff-btn:hover {
+    background-color: #c82333;
+  }
+  

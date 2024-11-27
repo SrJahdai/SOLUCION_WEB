@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Dueno\GestionUsuarios.cshtml" />
-    <Content Remove="Views\Dueno\Index.cshtml" />
-    <Content Remove="Views\P9\Puntaje.cshtml" />
+    <Content Remove="Views\Duenos\GestionUsuarios.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,8 +33,7 @@
 
   <ItemGroup>
     <None Include="Views\Administrador\Puntaje.cshtml" />
-    <None Include="Views\Dueno\GestionUsuarios.cshtml" />
-    <None Include="Views\Dueno\Index.cshtml" />
+    <None Include="Views\Duenos\GestionUsuarios.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

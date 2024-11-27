@@ -6,6 +6,7 @@ namespace BEARFLIX.Models.DTO
     {
         public static void Initialize(BearflixContext context)
         {
+
             // Verificar si los roles ya están insertados
             if (context.Rol.Any()) return; // Si ya existen roles, no hacer nada
 

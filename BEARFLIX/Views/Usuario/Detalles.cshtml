@@ -16,13 +16,23 @@
         <p class="px-2" id="descripcion"></p>
         <p class="px-2" id="duracion"></p>
 
-        <div class="row px-2">
+        <div class="row px-2" id="botonesCompraRenta" style="visibility: hidden;">
     <div class="col-12 col-lg-6 m-2">
-        <button class="btn-orange container" data-bs-toggle="modal" data-bs-target="#modalPago" data-accion="comprar">Comprar</button>         
+        <button class="btn-orange container" data-bs-toggle="modal" data-bs-target="#modalPago" data-accion="comprar">Comprar</button>
     </div>
     <div class="col-12 col-lg-6 m-2">
         <button class="btn-orange container" data-bs-toggle="modal" data-bs-target="#modalPago" data-accion="rentar">Rentar</button>
     </div>
+</div>
+
+<div class="row px-2" id="videoContainer" style="visibility: hidden;">
+    <div class="col-12 m-2">
+        <video id="videoPlayer" controls style="width: 100%;">
+            <source src="" type="video/mp4">
+            Tu navegador no soporta el elemento <code>video</code>.
+        </video>
+    </div>
+</div>
 </div>
 
     </div>
@@ -55,60 +65,79 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
        $(document).ready(function () {
+           function mostrarCarga() {
+        $("#loading-screen").css("visibility", "visible");
+    }
+
+    function ocultarCarga() {
+        $("#loading-screen").css("visibility", "hidden");
+    }
+    mostrarCarga();
     var precioCompra, precioRenta, accionSeleccionada;
     var peliculaId = parseInt(window.location.pathname.split('/').pop()); // Obtener ID de la película desde la URL
 
     $.get(`/api/Escaparate/Detalles/${peliculaId}`, function (data) {
-        // Actualizar los elementos con la información de la película
-        $('#fondo').attr('src', data.fondo);
-        $('#titulo').text(data.titulo);
-        $('#descripcion').text(data.descripcion);
-        $('#duracion').text('Duración: ' + data.duracion);
-        $('#stars').html(generateStars(data.puntajePromedio));
-        $('#current-rating').text(data.puntajePromedio);
-        $('#total-votos').text(data.totalPuntajes);
-        precioCompra = data.precioCompra;
-        precioRenta = data.precioRenta;
-    });
+        mostrarCarga();
+                $('#fondo').attr('src', data.fondo);
+                $('#titulo').text(data.titulo);
+                $('#descripcion').text(data.descripcion);
+                $('#duracion').text('Duración: ' + data.duracion);
+                $('#stars').html(generateStars(data.puntajePromedio));
+                $('#current-rating').text(data.puntajePromedio);
+                $('#total-votos').text(data.totalPuntajes);
+                precioCompra = data.precioCompra;
+                precioRenta = data.precioRenta;
 
-    $(document).on('click', '[data-bs-target="#modalPago"]', function () {
-        accionSeleccionada = $(this).data('accion'); // Obtener si es "comprar" o "rentar"
-        $('#peliculaTitulo').text($('#titulo').text()); // Usar el título de la película cargado previamente
-    
-        if (accionSeleccionada === 'comprar') {
-            $('#precioCompra').text(precioCompra);
-            $('#precioRenta').text('');
-            $('#total').text(precioCompra);
-        } else if (accionSeleccionada === 'rentar') {
-            $('#precioRenta').text(precioRenta);
-            $('#precioCompra').text('');
-            $('#total').text(precioRenta);
-        }
-    });
+                if(data.mostrarBotones){
+                    $("#botonesCompraRenta").css("visibility", "visible")
+                }
+                if(data.mostrarVideo){
+                    $("#videoContainer").css("visibility", "visible")
+                }
+                
+                    $('#videoPlayer').attr('src', data.video);
+                ocultarCarga();
+            });
 
-    $('#confirmarPago').on('click', function () {
-        var tipoVentaId = accionSeleccionada === 'comprar' ? 1 : 2; // 1 para compra, 2 para renta
-        var monto = accionSeleccionada === 'comprar' ? precioCompra : precioRenta;
+            $(document).on('click', '[data-bs-target="#modalPago"]', function () {
+                
+                accionSeleccionada = $(this).data('accion');
+                $('#peliculaTitulo').text($('#titulo').text());
 
-        $.ajax({
-            url: '/api/Escaparate/RealizarPago',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                IdUsuario: usuarioId,  // Asegúrate de que `usuarioId` esté definido
-                IdPelicula: peliculaId,
-                Monto: monto,
-                IdTipo: tipoVentaId
-            }),
-            success: function (response) {
-                alert(response.mensaje); // Mensaje de éxito o error
-                $('#modalPago').modal('hide'); // Cerrar el modal
-            },
-            error: function (error) {
-                alert('Error al realizar la compra/renta');
-            }
-        });
-    });
+                if (accionSeleccionada === 'comprar') {
+                    $('#precioCompra').text(precioCompra);
+                    $('#precioRenta').text('');
+                    $('#total').text(precioCompra);
+                } else if (accionSeleccionada === 'rentar') {
+                    $('#precioRenta').text(precioRenta);
+                    $('#precioCompra').text('');
+                    $('#total').text(precioRenta);
+                }
+            });
+
+            $('#confirmarPago').on('click', function () {
+                mostrarCarga();
+                const tipoVentaId = accionSeleccionada === 'comprar' ? 1 : 2;
+                const monto = accionSeleccionada === 'comprar' ? precioCompra : precioRenta;
+
+                $.ajax({
+                    url: '/api/Escaparate/RealizarPago',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ IdPelicula: peliculaId, Monto: monto, IdTipo: tipoVentaId }),
+                    success: function (response) {
+                        alert(response.mensaje);
+                        $('#modalPago').modal('hide');
+                        ocultarCarga();
+                    },
+                    error: function () {
+                        ocultarCarga();
+                        alert('Error al realizar el pago.');
+                    }
+                });
+            });
+
+           
 
     function generateStars(rating) {
         var starsHtml = '';

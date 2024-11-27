@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BEARFLIX</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/adminPeliculas.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BEARFLIX.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/iconos/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/lib/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+</head>
+<body class="bg-light">
+
+      <header>
+        <nav id="barraNav" class="navbar bg-dark fixed-top text-light" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a asp-area="" asp-controller="Inicio" asp-action="Index">
+                    <img src="~/images/LogoBearflix.png" alt="Logo" id="Logo" class="navbar-brand img-fluid me-4">
+                </a>
+                <button class="mx-3 d-none d-md-flex ms-auto btn border-0" data-bs-toggle="modal" data-bs-target="#modalUsuario">
+                    <div id="nombreUsuario" class="font-monospace mt-2 me-2">@ViewData["NombreUsuario"]</div>
+                    <span class="vr mx-2"></span><div class="font-monospace mt-2 me-2">@ViewData["RolUsuario"]</div>
+                </button>
+
+
+            </div>
+        </nav>
+      </header>
+    <div>
+        <main role="main" class="container-fluid z-1 py-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

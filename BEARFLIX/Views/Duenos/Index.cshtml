@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewData["Title"] = "Dueno";
 }
 
@@ -6,7 +6,7 @@
     <h1 class="mb-4">BEARFLIX, @ViewData["NombreUsuario"]</h1>
     <div class="d-flex justify-content-center flex-wrap gap-3">
         <!-- Enlace para usuarios de la plataforma -->
-        <a href="@Url.Action(" Usuarios", "Dueno" )" id="users-btn" class="btn btn-primary btn-lg">USUARIOS DE LA PLATAFORMA</a>
+        <a href="@Url.Action("GestionUsuarios", "Dueno" )" id="users-btn" class="btn btn-primary btn-lg">USUARIOS DE LA PLATAFORMA</a>
 
         <!-- Enlace para reporte de ventas -->
         <a href="@Url.Action(" ReporteVentas", "Dueno" )" id="sales-btn" class="btn btn-success btn-lg">REPORTE DE VENTAS</a>

@@ -110,6 +110,14 @@ namespace BEARFLIX.Controllers
         [HttpGet("Detalles/{id}")]
         public async Task<IActionResult> GetPeliculaDetalles(int id)
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized(new { mensaje = "Usuario no autenticado." });
+            }
+
+            int idUsuario = int.Parse(userId);
+
             var pelicula = await _context.Pelicula
                 .Include(p => p.IdGenero.Where(g => g != null))
                 .Include(p => p.Puntaje)
@@ -119,6 +127,16 @@ namespace BEARFLIX.Controllers
             {
                 return NotFound(new { mensaje = "Película no encontrada." });
             }
+
+            // Verificar si el usuario ya tiene una compra o renta activa
+            var ventaExistente = await _context.Venta
+                .Where(v => v.IdUsuario == idUsuario && v.IdPelicula == id)
+                .OrderByDescending(v => v.FechaVenta)
+                .FirstOrDefaultAsync();
+
+            bool mostrarVideo = ventaExistente != null &&
+                                (ventaExistente.IdTipo == 1 ||
+                                 (ventaExistente.IdTipo == 2 && ventaExistente.Expiracion >= DateTime.Now));
 
             var puntajePromedio = pelicula.Puntaje.Any()
                 ? pelicula.Puntaje.Average(p => p.Puntaje1)
@@ -134,16 +152,18 @@ namespace BEARFLIX.Controllers
                 Fondo = pelicula.Fondo,
                 Estreno = pelicula.Estreno.ToString("yyyy-MM-dd"),
                 Generos = pelicula.IdGenero.Select(g => g.Descripcion).ToList(),
-                Video = pelicula.Video,
+                Video = pelicula.Video, // URL del video
                 PrecioCompra = pelicula.PrecioCompra,
                 PrecioRenta = pelicula.PrecioRenta,
                 PuntajePromedio = Math.Round(puntajePromedio, 2),
                 TotalPuntajes = pelicula.Puntaje.Count,
-                MostrarBotones = true,  // Cambiar esta lógica según el rol o estado del usuario
+                MostrarBotones = !mostrarVideo, // Mostrar botones si no tiene compra/renta activa
+                MostrarVideo = mostrarVideo    // Mostrar video si ya lo compró/rentó
             };
 
             return Ok(respuesta);
         }
+
 
         [HttpPost("RealizarPago")]
         public async Task<IActionResult> RealizarPago([FromBody] PagoDto pagoDto)
